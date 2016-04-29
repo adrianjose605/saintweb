@@ -9,7 +9,6 @@
 
     </div >
     <div class="md-toolbar-tools" style="padding-left: 70%">
-       <h1> <?php echo $nombre;?></h1>
         <md-button href="<?php echo base_url(); ?>usuarios/cerrar" class="md-icon-button" aria-label="More" style="padding-top: 10%">        
         <md-icon class="center" md-svg-src="public/icons/arrow.svg" style="padding-top: 9%"></md-icon>
         </md-button>

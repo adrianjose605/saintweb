@@ -1,14 +1,25 @@
 
-<div ng-controller="noticias" layout="column" flex id="content" >
+<div ng-controller="Facturas" layout="column" flex id="content" >
     <div class="container" style="width:95%">
-        <h1 >Saint</h1>
+        <h1>Listado de Facturas</h1>
 
 
-            <div ng-show="contador != 0" tasty-table bind-resource-callback="getResource" bind-filters="paginador" ng-cloak>
-              
+            <div>
 
+                   <table class="table table-striped table-condensed">
+                        <tr>
+                            <th>Tipo de Factura</th>
+                            <th>Monto</th>
+                            <th>Fecha</th>
+                        </tr>
+                       <tr ng-repeat="row in posts">
+                           <td>{{ row.TipoFac }}</td>
+                           <td>{{ row.Monto | currency}}</td>
+                           <td>{{ row.Fecha }}</td>
+                       </tr>
+                   </table>
 
-                <table class="table table-striped table-condensed" >
+               <!-- <table class="table table-striped table-condensed" >
                     <thead tasty-thead bind-not-sort-by="notSortBy" class="centrado"></thead>
                     <tbody id="tabla">
                         <tr ng-repeat="row in rows" class="centrado">
@@ -20,7 +31,7 @@
 
                         </tr>
                     </tbody>
-                </table>
+                </table>-->
             </div>
     </div>
 
