@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="public/material-icon/css/materialdesignicons.min.css">        
         <link rel="stylesheet" href="public/angular-datepicker-master/dist/index.min.css">
         <link rel="stylesheet" href="public/bootstrap-timepicker/less/timepicker.less">
-                  <link rel="stylesheet" href="public/css/general.css">
+        <link rel="stylesheet" href="public/css/general.css">
 
 
         <script src="public/jquery/jquery.min.js"></script>
@@ -35,6 +35,7 @@
         <script src="public/angular-bootstrap-ui/ui-bootstrap.min.js"></script>
 
         <script src="public/js/SaintW.js"></script>
+        <script src="public/highcharts/js/highcharts.js"></script>
         
 
 

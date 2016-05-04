@@ -9,9 +9,25 @@
 		}
 
 		public function get_all() {
-		    $this->db->select('*');
-		    $this->db->from('saa_lib');
-		    $query = $this->db->get();
+		    $query = $this->db->get('saa_lib');
+		    return $query->result_array();
+	    }
+
+	    //Total Credito por sucursal
+	    public function get_credito_sucursal(){
+	    	$this->db->select('TipoFac, SUM(Credito) as totalCredito');
+	    	$this->db->where("TipoFac = 'B'");
+	    	$this->db->group_by('TipoFac');
+	    	$query = $this->db->get('saa_lib');
+		    return $query->result_array();
+	    }
+
+	    //Total facturado
+	    public function get_facturado_sucursal(){
+	    	$this->db->select('TipoFac, SUM(Monto) as totalFacturado');
+	    	$this->db->where("TipoFac = 'A'");
+	    	$this->db->group_by('TipoFac');
+	    	$query = $this->db->get('saa_lib');
 		    return $query->result_array();
 	    }
 		

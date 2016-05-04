@@ -8,13 +8,13 @@
 
                    <table class="table table-striped table-condensed">
                         <tr>
-                            <th>Tipo de Factura</th>
-                            <th>Monto</th>
-                            <th>Fecha</th>
+                            <th class="text-center">Tipo de Factura</th>
+                            <th class="text-center">Monto</th>
+                            <th class="text-center">Fecha</th>
                         </tr>
                        <tr ng-repeat="row in posts">
                            <td>{{ row.TipoFac }}</td>
-                           <td>{{ row.Monto | currency}}</td>
+                           <td>{{ row.Monto | currency : 'Bs '}}</td>
                            <td>{{ row.Fecha }}</td>
                        </tr>
                    </table>
