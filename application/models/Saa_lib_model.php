@@ -13,6 +13,11 @@
 		    return $query->result_array();
 	    }
 
+	    //Ventas Diarias
+	    public function get_ventas_diarias($mes){
+
+	    }
+
 	    //Total Credito por sucursal
 	    public function get_credito_sucursal(){
 	    	$this->db->select('TipoFac, SUM(Credito) as totalCredito');
@@ -27,6 +32,14 @@
 	    	$this->db->select('TipoFac, SUM(Monto) as totalFacturado');
 	    	$this->db->where("TipoFac = 'A'");
 	    	$this->db->group_by('TipoFac');
+	    	$query = $this->db->get('saa_lib');
+		    return $query->result_array();
+	    }
+
+	    //Total facturas realizadas
+	    public function get_facturas_sucursal(){
+	    	$this->db->select('COUNT(*) as total');
+	    	$this->db->where("TipoFac = 'A'");
 	    	$query = $this->db->get('saa_lib');
 		    return $query->result_array();
 	    }

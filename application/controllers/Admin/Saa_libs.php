@@ -37,5 +37,10 @@ class Saa_libs extends CI_Controller {
         header('Content-Type: application/json');
         echo json_encode($this->Saa_lib_model->get_facturado_sucursal());
     }
+
+    public function totalFacturas(){
+        header('Content-Type: application/json');
+        echo json_encode($this->Saa_lib_model->get_facturas_sucursal());
+    }
     
 }
