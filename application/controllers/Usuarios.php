@@ -45,24 +45,28 @@ public function cerrar(){
         $r='';
          $data['usuario'] = $this->input->post('usuario'); 
          $data['clave'] = $this->input->post('clave'); 
-        $usuario= $this->Usuarios_model->acceso($data);
+         $usuario= $this->Usuarios_model->acceso($data);
+         
         if($usuario==NULL){
 
             redirect('usuarios/personas');
 
         }
 
-         $usuario_data = array(               
-               'nombre' => $usuario->nombre,
-               'usuario' => $usuario->usuario,
-               'permiso' => $usuario->id_permiso,
-               'estatus' => $usuario->estatus,
+         $usuario_data = array(   
+               'id' => $usuario->id,            
+               'nombre' => $usuario->Nombre,
+               'apellido' => $usuario->Apellido,
+               'empresa' => $usuario->id_Empresa,
+               'usuario' => $usuario->Usuario,
+               'permiso' => $usuario->id_Grupo,
+               'estatus' => $usuario->Estatus,
                'logueado' => TRUE);
         
         $this->session->set_userdata($usuario_data);
 
          if ($usuario_data['logueado']==TRUE and $usuario_data['estatus']==1){
-             redirect('Admin/Noticias');
+             redirect('Admin/Saa_Libs/Dashboard');
             }else{
 
              redirect('usuarios/personas');

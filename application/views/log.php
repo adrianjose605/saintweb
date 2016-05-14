@@ -12,11 +12,6 @@
            <form method="post" action="usuarios/verificacion"  name="formSesion" role="form" novalidate>
                     
                     <md-input-container style="margin-top: 6%; width: 95%;"class="" >
-                        <label>Seleccione su empresa</label>
-                        <input required md-no-asterisk name="usuario" ng-model="user.empresa" type="email">
-                    </md-input-container><br>
-
-                    <md-input-container style="margin-top: 6%; width: 95%;"class="" >
                         <label>Usuario</label>
                         <input required md-no-asterisk name="usuario" ng-model="user.usuario" type="email">
                     </md-input-container><br>

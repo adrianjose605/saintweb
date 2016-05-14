@@ -12,7 +12,7 @@ class Usuarios_model extends CI_Model {
 
      function comprobar_permisos($idpermiso){
         $this->db->select('*');
-        $this->db->from('permisos');
+        $this->db->from('EnterpriseTest.sch_sistema.SIS_PERMISOS');
         $this->db->where('id',$idpermiso);
         $result= $this->db->get();
        
@@ -29,20 +29,21 @@ class Usuarios_model extends CI_Model {
 
     }
 
-
+// EN FUNCIONAMIENTO
     function acceso($data){
         $this->db->select('*');
-        $this->db->where('usuario',$data['usuario']);
-        $result= $this->db->get('usuarios');
+        $this->db->from('sch_sistema.SIS_USUARIO');
+        $this->db->where('Usuario',$data['usuario']);
+        $result= $this->db->get();
         $user= $result->row();
-
+       
 
         if(isset($user)){
         $this->db->select('*');
-        $this->db->where('usuario',$data['usuario']);
-        $this->db->where('pass',$data['clave']);
-       $result= $this->db->get('usuarios');
-      return $result->row();
+        $this->db->where('Usuario',$data['usuario']);
+        $this->db->where('Clave',$data['clave']);
+        $result= $this->db->get('sch_sistema.SIS_USUARIO');
+        return $result->row();
         }else{
 
         return NULL; 
@@ -51,6 +52,10 @@ class Usuarios_model extends CI_Model {
        
 
     }
+
+
+
+    
     function verificacion() {
         $data = $this->getInputFromAngular();
         $usuario = array('nombre' => $data('nom'),

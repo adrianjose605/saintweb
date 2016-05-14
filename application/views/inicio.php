@@ -6,11 +6,9 @@
         <h1>Saint Web</h1>
     </div>
 </md-toolbar>
-<div ng-controller="Login">
+<div ng-controller="Login" ng-init="showAdvanced($event)">
 	
-	 <md-button class="md-raised md-primary" ng-click="showAdvanced($event)">Acceso a empresas
-      
-     </md-button>
+	 
 </div>
 
 <script src="public/js/User.js"></script>
