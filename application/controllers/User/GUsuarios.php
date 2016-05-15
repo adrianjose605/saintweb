@@ -85,7 +85,10 @@ class GUsuarios extends CI_Controller {
         $ret['sort-order'] = $type;
 
         echo json_encode($ret);
-    }  
+    }
+
+
+      
     public function ver ($id=1){             
         $result=$this->Usuarios_model->get_usuarios($id);
         foreach ($result as $row) {

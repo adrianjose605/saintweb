@@ -7,7 +7,7 @@ angular.module('saint')
 	function us($scope,$http,$mdToast){
 	$scope.user={};
 	$scope.permiso={};$scope.permiso2={};
-	$scope.user={};$scope.user2={}; $scope.Pass={pass:''}; $scope.per={descripcion:''};
+	$scope.user={};$scope.user2={}; $scope.Pass={clave:''}; $scope.per={descripcion:''};
 	
 	$scope.busqueda={estatus:true,query:''};
 	$scope.paginador={valor:true};
@@ -41,22 +41,19 @@ angular.module('saint')
 
 
 
-
+// obtener info de un grupo para los swich
 	$scope.getGrupos= function(id){
 		console.log('/User/GUsuarios/verG/'+id);
 		$http.get('User/GUsuarios/verG/'+id).
 			success(function(data, status, headers, config) {				
-					data.permisos=data.permisos=='1';
-					data.boton_panico=data.boton_panico=='1';
-					data.enviar_noticias=data.enviar_noticias=='1';
-					data.estatus=data.estatus=='1';
-					data.crear_usuarios=data.crear_usuarios=='1';
-					data.permisos=data.permisos=='1';
-					data.moderar=data.moderar=='1';
-					data.camaras=data.camaras=='1';
-					data.ver_noticias=data.ver_noticias=='1';
-
-					//console.log(data);
+					data.Permisos=data.Permisos=='1';
+					data.LibroVentaSucursal=data.LibroVentaSucursal=='1';
+					data.LibroVentaConsolidado=data.LibroVentaConsolidado=='1';
+					data.Facturacion=data.Facturacion=='1';
+					data.Estatus=data.Estatus=='1';
+					data.Usuarios=data.Usuarios=='1';
+			
+			
 					$scope.permiso=data;					
 					//console.log($scope.alerta_nueva);
 					var $j = jQuery.noConflict();
@@ -68,7 +65,7 @@ angular.module('saint')
 			});
 	}
 
-
+// obtener info de un usuario para los swich
 $scope.getUsuarios= function(id){
 	  console.log('User/LUsuarios/verU/'+id);
 		$http.get('User/LUsuarios/verU/'+id).

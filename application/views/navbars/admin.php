@@ -5,8 +5,8 @@
         </md-button>
          <img src="public/img/Imagen15.png">
         
-        <h1>Saint Web</h1>
-
+        
+         <img src="public/img/SAINT.PNG">
     </div >
     <div class="md-toolbar-tools" style="padding-left: 70%">
         <md-button href="<?php echo base_url(); ?>usuarios/cerrar" class="md-icon-button" aria-label="More" style="padding-top: 10%">        
@@ -39,47 +39,31 @@
                     </accordion-heading> 
                     <md-list class="listdemoListControls">
                         <md-list-item ng-click="navigateTo('User/GUsuarios')">
-                            <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Reportes <i class="fa fa-file-pdf-o" aria-hidden="true"></i></p>
+                            <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Libro de ventas <i class="fa fa-file-pdf-o" aria-hidden="true"></i></p>
                         </md-list-item>
                         
                     </md-list>
-
+                      <md-list class="listdemoListControls">
+                        <md-list-item ng-click="navigateTo('User/GUsuarios')">
+                            <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Facturacion <i class="fa fa-file-pdf-o" aria-hidden="true"></i></p>
+                        </md-list-item>
+                        
+                    </md-list>
+                     
                 </accordion-group>
+               
                
                 <accordion-group>
                     <accordion-heading>
-                        <p><span class="glyphicon glyphicon-menu-down" style="margin-right: 10px;"></span> Informacion de la empresa</p>
-                    </accordion-heading> 
-                    <md-list class="listdemoListControls">
-                    <h2 class="md-no-sticky md-subheader md-default-theme"><div class="md-subheader-inner"><span class="md-subheader-content"><span class="ng-scope">Monitorizacion</span></span></div></h2>
-                        <md-list-item ng-click="navigateTo('Admin/noticias')">
-                            <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span>Modulo</p>
-                        </md-list-item>
-                       <md-list-item ng-click="navigateTo('Admin/camaras')">
-                            <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Modulo</p>
-                        </md-list-item>
-                   
-                      
-                       
-                    <md-divider class="md-default-theme"></md-divider>
-                    <md-list-item ng-click="navigateTo('Admin/camaras/configurar')">
-                            <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Modulo</p>
-                        </md-list-item>
-                    
-
-                    <md-divider class="md-default-theme"></md-divider>
-                </accordion-group>
-                <accordion-group>
-                    <accordion-heading>
-                        <p><span class="glyphicon glyphicon-menu-down" style="margin-right: 10px;"></span> Manejo de Personal</p>
+                        <p><span class="glyphicon glyphicon-menu-down" style="margin-right: 10px;"></span> Control de Acceso</p>
                     </accordion-heading> 
                     <md-list class="listdemoListControls">
                         <md-list-item ng-click="navigateTo('User/GUsuarios')">
-                            <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Gestion de Permisos</p>
+                            <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Usuarios de acceso</p>
                         </md-list-item>
                         
                         <md-list-item ng-click="navigateTo('User/LUsuarios')">
-                            <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Control de Usuarios</p>
+                            <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Grupos de usuarios</p>
                         </md-list-item>
                     </md-list>
 

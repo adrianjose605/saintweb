@@ -77,7 +77,7 @@ public function cerrar(){
 
    
 
-    public function personas() {
+    public function acceso() {
 
         $this->load->view('templates/header');     
         $this->load->view('inicio');

@@ -22,7 +22,7 @@ angular.module('saint', ['ngMaterial', 'ngMessages', 'ngTasty', 'ui.bootstrap','
       'hue-3': 'A100' // use shade A100 for the <code>md-hue-3</code> class
     })
     .accentPalette('orange',{
-        'default': '900'
+        'default': '600'
     });
 });
 function hacerToast(type, msg, toast) {

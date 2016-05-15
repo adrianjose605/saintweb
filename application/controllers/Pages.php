@@ -4,7 +4,7 @@ class Pages extends CI_Controller {
         public function view($page = 'home')
         {
 
-        redirect('/Admin/Noticias');
+        redirect('/Admin/Saa_libs');
 
         }
 }

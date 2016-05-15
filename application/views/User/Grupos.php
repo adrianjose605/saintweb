@@ -39,38 +39,39 @@
                                 <div class="form-group">
                                     <md-input-container flex>
                                         <label>Descripcion</label>
-                                        <input ng-model="permiso2.descripcion"  pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="usuario_noticia" type="text">
+                                        <input ng-model="permiso2.Descripcion"  pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="usuario_noticia" type="text">
 
                                     </md-input-container>
                                 </div>
                                 
                                    <div class="form-group">
-                                    <md-switch ng-model="permiso2.ver_noticias">
-                                        Ver Noticias
+                                    <md-switch ng-model="permiso2.LibroVentaConsolidado">
+                                       Libro de Ventas Consolidado
                                     </md-switch>
                                 </div> 
                                    <div class="form-group">
-                                    <md-switch ng-model="permiso2.enviar_noticias">
-                                        Enviar Noticias
+                                    <md-switch ng-model="permiso2.LibroVentaSucursal">
+                                            Libro de Ventas por sucursal
                                     </md-switch>
                                 </div> 
+                                  
                                    <div class="form-group">
-                                    <md-switch ng-model="permiso2.boton_panico">
-                                        Boton de panico
+                                    <md-switch ng-model="permiso2.Facturacion">
+                                        Informacion de Ventas
                                     </md-switch>
-                                </div>   <div class="form-group">
-                                    <md-switch ng-model="permiso2.crear_usuarios">
+                                </div> 
+                              <div class="form-group">
+                                    <md-switch ng-model="permiso2.Usuarios">
                                         Crear usuarios
                                     </md-switch>
                                 </div> 
-                               
                                 <div class="form-group">
-                                    <md-switch ng-model="permiso2.permisos">
+                                    <md-switch ng-model="permiso2.Permisos">
                                         Cambiar Permisos
                                     </md-switch>
                                 </div>
                                 <div class="form-group">
-                                    <md-switch ng-model="permiso2.estatus">
+                                    <md-switch ng-model="permiso2.Estatus">
                                         Grupo Activo
                                     </md-switch>
                                 </div>
@@ -97,23 +98,20 @@
                         <tr ng-repeat="row in rows" class="centrado">
 
                             <td>{{ row.Descripcion}}</td>
-                            <td><span class="glyphicon" ng-class="( (row.Ver_Alertas==1) ? 'mdi-action-done activo' : 'mdi-action-highlight-remove inactivo')" aria-hidden="true" title="ACTIVO" style="color:green"></span></td>
-                            <td><span class="glyphicon" ng-class="( (row.Enviar_Alertas==1) ? 'mdi-action-done activo' : 'mdi-action-highlight-remove inactivo')" aria-hidden="true" title="ACTIVO" style="color:green"></span></td>
-                            <td><span class="glyphicon" ng-class="( (row.Boton_Panico==1) ? 'mdi-action-done activo' : 'mdi-action-highlight-remove inactivo')" aria-hidden="true" title="ACTIVO" style="color:green"></span></td>
-                            <td><span class="glyphicon" ng-class="( (row.Crear_U==1) ? 'mdi-action-done activo' : 'mdi-action-highlight-remove inactivo')" aria-hidden="true" title="ACTIVO" style="color:green"></span></td>
+                            <td><span class="glyphicon" ng-class="( (row.LibroVentaSucursal==1) ? 'mdi-action-done activo' : 'mdi-action-highlight-remove inactivo')" aria-hidden="true" title="ACTIVO" style="color:green"></span></td>
+                            <td><span class="glyphicon" ng-class="( (row.LibroVentaConsolidado==1) ? 'mdi-action-done activo' : 'mdi-action-highlight-remove inactivo')" aria-hidden="true" title="ACTIVO" style="color:green"></span></td>
+                            <td><span class="glyphicon" ng-class="( (row.Facturacion==1) ? 'mdi-action-done activo' : 'mdi-action-highlight-remove inactivo')" aria-hidden="true" title="ACTIVO" style="color:green"></span></td>
+                          
+                            <td><span class="glyphicon" ng-class="( (row.Usuarios==1) ? 'mdi-action-done activo' : 'mdi-action-highlight-remove inactivo')" aria-hidden="true" title="ACTIVO" style="color:green"></span></td>
 
 
-                            <td><span class="glyphicon" ng-class="( (row.Crear_Permisos==1) ? 'mdi-action-done activo' : 'mdi-action-highlight-remove inactivo')" aria-hidden="true" title="ACTIVO" style="color:green"></span></td>
-
-                            <td><span class="glyphicon" ng-class="( (row.Camaras==1) ? 'mdi-action-done activo' : 'mdi-action-highlight-remove inactivo')" aria-hidden="true" title="ACTIVO" style="color:green"></span></td>
-                            <td><span class="glyphicon" ng-class="( (row.Moderar==1) ? 'mdi-action-done activo' : 'mdi-action-highlight-remove inactivo')" aria-hidden="true" title="ACTIVO" style="color:green"></span></td>
-
+                            <td><span class="glyphicon" ng-class="( (row.Permisos==1) ? 'mdi-action-done activo' : 'mdi-action-highlight-remove inactivo')" aria-hidden="true" title="ACTIVO" style="color:green"></span></td>
 
                             <td><span class="glyphicon" ng-class="( (row.Estatus==1) ? 'mdi-action-done activo' : 'mdi-action-highlight-remove inactivo')" aria-hidden="true" title="ACTIVO" style="color:green"></span></td>
                            
                             <td>
                                 <div class="btn-group">
-                                    <a class="btn btn-material-red btn-xs" href=""  ng-click="getGrupos(row.Opciones)" data-toggle="modal" data-target="#modificar_grupo"><span class="glyphicon glyphicon-search"></span></a>
+                                    <a class="btn btn-material-orange btn-xs" href=""  ng-click="getGrupos(row.Opciones)" data-toggle="modal" data-target="#modificar_grupo"><span class="glyphicon glyphicon-search"></span></a>
                                 </div>
                             </td>
 
@@ -142,60 +140,52 @@
                         </div>
                         <div class="modal-body">
                             <form class="form-inline" name="formGrupoM" role="form" novalidate>
-                                <div class="form-group">
+                                 <div class="form-group">
                                     <md-input-container flex>
                                         <label>Descripcion</label>
-                                        <input ng-model="permiso.descripcion"  pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="usuario_noticia" type="text">
+                                        <input ng-model="permiso.Descripcion"  pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="usuario_noticia" type="text">
 
                                     </md-input-container>
                                 </div>
                                 
                                    <div class="form-group">
-                                    <md-switch ng-model="permiso.ver_noticias">
-                                        Ver Noticias
+                                    <md-switch ng-model="permiso.LibroVentaConsolidado">
+                                       Libro de Ventas Consolidado
                                     </md-switch>
                                 </div> 
                                    <div class="form-group">
-                                    <md-switch ng-model="permiso.enviar_noticias">
-                                        Enviar Noticias
+                                    <md-switch ng-model="permiso.LibroVentaSucursal">
+                                            Libro de Ventas por sucursal
                                     </md-switch>
                                 </div> 
+                                  
                                    <div class="form-group">
-                                    <md-switch ng-model="permiso.boton_panico">
-                                        Boton de panico
+                                    <md-switch ng-model="permiso.Facturacion">
+                                           Facturacion
                                     </md-switch>
-                                </div>   <div class="form-group">
-                                    <md-switch ng-model="permiso.crear_usuarios">
-                                        Crear usuarios
+                                </div>
+                                <div class="form-group">
+                                    <md-switch ng-model="permiso.Usuarios">
+                                      Usuarios
                                     </md-switch>
                                 </div> 
-                               
                                 <div class="form-group">
-                                    <md-switch ng-model="permiso.permisos">
-                                        Cambiar Permisos
+                                    <md-switch ng-model="permiso.Permisos">
+                                        Permisos
                                     </md-switch>
                                 </div>
                                 <div class="form-group">
-                                    <md-switch ng-model="permiso.moderar">
-                                        Moderar
-                                    </md-switch>
-                                </div>
-                                <div class="form-group">
-                                    <md-switch ng-model="permiso.camaras">
-                                        Camaras
-                                    </md-switch>
-                                </div>                                
-                                <div class="form-group">
-                                    <md-switch ng-model="permiso.estatus">
+                                    <md-switch ng-model="permiso.Estatus">
                                         Grupo Activo
                                     </md-switch>
                                 </div>
+
 
                             </form>
                             <div class="modal-footer">
                                 <md-button class="md-raised md-primary" ng-click="registrar_grupo()">Guardar</md-button>
 
-                                <md-button class="btn-material-red" ng-click="resetForm();" data-dismiss="modal">Cerrar</md-button>
+                                <md-button class=" md-raised btn-material-orange" ng-click="resetForm();" data-dismiss="modal">Cerrar</md-button>
                             </div>
                         </div>
                     </div>

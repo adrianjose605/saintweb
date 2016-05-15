@@ -1,5 +1,5 @@
 AddDefaultCharset UTF-8
-RewriteBase /sec_uneg/
+RewriteBase /saintweb/
 RewriteEngine on
 RewriteCond $1 !^(index\.php|images|public|conexion|js|bjs|plugins|css|robots\.txt)
 RewriteRule ^(.*)$ index.php/$1 [L]
