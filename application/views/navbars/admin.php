@@ -8,12 +8,14 @@
         
          <img src="public/img/SAINT.PNG">
     </div >
+   
     <div class="md-toolbar-tools" style="padding-left: 70%">
         <md-button href="<?php echo base_url(); ?>usuarios/cerrar" class="md-icon-button" aria-label="More" style="padding-top: 10%">        
         <md-icon class="center" md-svg-src="public/icons/arrow.svg" style="padding-top: 9%"></md-icon>
         </md-button>
         
     </div>
+ 
 </md-toolbar>
 <div layout="row" flex ng-cloak>
     <md-sidenav layout="column" class="md-sidenav-left  md-whiteframe-z4" md-is-locked-open="$mdMedia('gt-lg')" md-disable-backdrop md-whiteframe="4" md-component-id="left">
@@ -32,27 +34,33 @@
                     </md-list>
 
                 </accordion-group>
-
+                    
                 <accordion-group>
                     <accordion-heading>
                         <p><span class="glyphicon glyphicon-menu-down" style="margin-right: 10px;"></span> Ventas</p>
                     </accordion-heading> 
+                      <?php if($LV==1): ?>
+         
                     <md-list class="listdemoListControls">
                         <md-list-item ng-click="navigateTo('User/GUsuarios')">
                             <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Libro de ventas <i class="fa fa-file-pdf-o" aria-hidden="true"></i></p>
                         </md-list-item>
                         
                     </md-list>
+                       <?php endif ?>
+                           <?php if($Facturacion==1): ?>
+         
                       <md-list class="listdemoListControls">
                         <md-list-item ng-click="navigateTo('User/GUsuarios')">
                             <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Facturacion <i class="fa fa-file-pdf-o" aria-hidden="true"></i></p>
                         </md-list-item>
-                        
+                           <?php endif ?>
+         
                     </md-list>
                      
                 </accordion-group>
                
-               
+            <?php if($Usuarios==1): ?>
                 <accordion-group>
                     <accordion-heading>
                         <p><span class="glyphicon glyphicon-menu-down" style="margin-right: 10px;"></span> Control de Acceso</p>
@@ -61,14 +69,15 @@
                         <md-list-item ng-click="navigateTo('User/LUsuarios')">
                             <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Usuarios de acceso</p>
                         </md-list-item>
-                        
+                        <?php if($Permisos==1): ?>
                         <md-list-item ng-click="navigateTo('User/GUsuarios')">
                             <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Grupos de usuarios</p>
                         </md-list-item>
+                         <?php endif ?>
                     </md-list>
 
                 </accordion-group>
-
+           <?php endif ?>
                   <accordion-group>
                     <accordion-heading>
                         <p><span class="glyphicon glyphicon-menu-down" style="margin-right: 10px;"></span> Control de empresas</p>

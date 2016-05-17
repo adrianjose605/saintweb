@@ -112,11 +112,11 @@ public function edit_grupos() {
     }
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////USUARIOS/////////////////////////////////////////////////////////////////
 
 
 
-    function comprobar_permisos($idpermiso){
+    function permisos($idpermiso){
         $this->db->select('*');
         $this->db->from('EnterpriseTest.sch_sistema.SIS_PERMISOS');
         $this->db->where('id',$idpermiso);
