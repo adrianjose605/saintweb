@@ -65,19 +65,23 @@
                             <h4 class="modal-title">Nuevo usuario</h4>
                         </div>
                         <div class="modal-body">
-                            <form class="form-inline" name="formUsuarioN" role="form" novalidate>
+                            <form class="form-inline" name="formUsuarioN" role="form" validate>
                                 <div class="form-group">
                                     <md-input-container flex>
                                         <label>Usuario</label>
-                                        <input ng-model="user2.Usuario" name="usuario" type="text">
+                                        <input ng-model="user2.Usuario" type="text" name="Usuario">
+                                         <ng-messages for="formNoticiaM.Usuario.$error" role="alert" ng-if="submitted">
+                                            <ng-message when="required">Debe indicar un Usuario</ng-message>
+                                            <ng-message when="pattern">El titulo deben ser caracteres</ng-message>  
+                                        </ng-messages>
                                     </md-input-container>
                                 </div>
                                 <div class="form-group">
                                     <md-input-container flex>
                                         <label>Nombre</label>
-                                        <input maxlength="30" ng-model="user2.Nombre" ng-readonly="false" pattern="[a-zA-Z]+" type="text" name="titulo_noticia">
-                                        <ng-messages for="formNoticiaM.usuario_noticia.$error" role="alert" ng-if="submitted">
-                                            <ng-message when="required">Debe indicar un Titulo</ng-message>
+                                        <input maxlength="30" ng-model="user2.Nombre" ng-readonly="false" pattern="[a-zA-Z]+" type="text" name="nombre_usuario">
+                                        <ng-messages for="formNoticiaM.Nombre.$error" role="alert" ng-if="submitted">
+                                            <ng-message when="required">Debe indicar un Nombre</ng-message>
                                             <ng-message when="pattern">El titulo deben ser caracteres</ng-message>  
                                         </ng-messages>
 
@@ -86,11 +90,24 @@
                                    <div class="form-group">
                                     <md-input-container flex>
                                         <label>Apellido</label>
-                                        <input ng-model="user2.Apellido"  ng-readonly="false" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="detalle_noticia" type="text">
+                                        <input ng-model="user2.Apellido" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="detalle_noticia" type="text">
 
                                     </md-input-container>
                                 </div>
-                                
+                                <div class="form-group">
+                                    <md-input-container flex>
+                                        <label>Correo</label>
+                                        <input ng-model="user2.Correo"  pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="correo" type="mail">
+
+                                    </md-input-container>
+                                </div>
+                                <div class="form-group">
+                                    <md-input-container flex>
+                                        <label>Telefono</label>
+                                        <input ng-model="user2.Telefono"  ng-readonly="false" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="correo" type="phone">
+
+                                    </md-input-container>
+                                </div>
                                 <div class="form-group">
                                     <md-input-container flex>
                                         <label>Permiso</label>
@@ -150,8 +167,8 @@
                                 <div class="form-group">
                                     <md-input-container flex>
                                         <label>Nombre</label>
-                                        <input maxlength="30" ng-model="usuarioN.Nombre" ng-readonly="false" pattern="[a-zA-Z]+" type="text" name="titulo_noticia">
-                                        <ng-messages for="formNoticiaM.usuario_noticia.$error" role="alert" ng-if="submitted">
+                                        <input maxlength="30" ng-model="usuarioN.Nombre" pattern="[a-zA-Z]+" type="text" name="nombre_usuario">
+                                        <ng-messages for="formNoticiaM.nombre_usuario.$error" role="alert" ng-if="submitted">
                                             <ng-message when="required">Debe indicar un Titulo</ng-message>
                                             <ng-message when="pattern">El titulo deben ser caracteres</ng-message>  
                                         </ng-messages>
@@ -165,16 +182,22 @@
 
                                     </md-input-container>
                                 </div>
-                                <div class="form-group">
+                               <div class="form-group">
                                     <md-input-container flex>
-                                        <label>Fecha de Registro</label>
-                                        <input ng-model="usuarioN.Fecha_registro" ng-readonly="true"   name="fechahora">                            
+                                        <label>Correo</label>
+                                        <input ng-model="usuarioN.Correo">                            
+                                    </md-input-container>
+                                </div>
+                                 <div class="form-group">
+                                    <md-input-container flex>
+                                        <label>Telefono</label>
+                                        <input ng-model="usuarioN.Telefono">                            
                                     </md-input-container>
                                 </div>
                                 <div class="form-group">
                                     <md-input-container flex>
                                         <label>Permiso</label>
-                                        <input ng-model="usuarioN.Descripcion"  ng-readonly="false" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="ubicacion_noticia" type="text">
+                                        <input ng-model="usuarioN.Descripcion" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="ubicacion_noticia" type="text">
 
                                     </md-input-container>
                                 </div>

@@ -357,17 +357,21 @@ public function edit_grupos() {
 
         if(($data['Clave'])!=" "){
             $usuario = [
-            'nombre' => $data['nombre'],
-            'apellido' => $data['apellido'],
-            'estatus' => $data['estatus'],
-            'clave'=>$data['clave']           
+            'Nombre' => $data['Nombre'],
+            'Apellido' => $data['Apellido'],
+            'Estatus' => $data['Estatus'],
+            'Clave'=>$data['Clave'] ,
+            'Correo'=>$data['Correo'], 
+            'Telefono'=>$data['Telefono']               
             ];
         }else{
             $usuario = [
-            'Nombre' => $data['nombre'],
-            'Apellido' => $data['apellido'],
-            'Estatus' => $data['estatus'],
-            'Clave'=>$data['clave']               
+            'Nombre' => $data['Nombre'],
+            'Apellido' => $data['Apellido'],
+            'Estatus' => $data['Estatus'],
+           'Clave'=>$data['Clave'] ,
+            'Correo'=>$data['Correo'], 
+            'Telefono'=>$data['Telefono']                
             ];
         }
         if(($data['Descripcion'])){
@@ -390,9 +394,10 @@ public function edit_grupos() {
    
     public function insert_usuario() {
         $arr = $this->getInputFromAngular();
+        $arr['id_Usuario_registro']=$this->session->userdata('id');
         $res = array();
-        $this->db->select('usuario');
-        $this->db->where('usuario', $arr['usuario']);
+        $this->db->select('Usuario');
+        $this->db->where('Usuario', $arr['Usuario']);
         $query1 = $this->db->get('sch_sistema.SIS_USUARIO');
         if ($query1->num_rows() > 0) {
             $res['status'] = 0;
@@ -400,9 +405,9 @@ public function edit_grupos() {
             return $res;
         }
 
-        $this->db->set('fecha_registro', 'NOW()', FALSE);
+        //$this->db->set('fecha_registro', 'GETDATE()', FALSE);
 
-        if ($this->db->insert('usuarios', $arr)) {
+        if ($this->db->insert('sch_sistema.SIS_USUARIO', $arr)) {
             $res['estatus'] = 1;
             $res['mensaje'] = 'Registrado con Exito';
         } else {
