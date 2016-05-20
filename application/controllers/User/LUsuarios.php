@@ -72,27 +72,32 @@ class LUsuarios extends CI_Controller {
 
     public function index() {
         $data['nombre'] = $this->session->userdata('nombre');
-        $data['title'] = 'SecUneg';
+        $data['title'] = 'Usuarios';
 
-       /* if (!$this->session->userdata('logueado')) {
+        if (!$this->session->userdata('logueado')) {
 
-                redirect('usuarios/personas');
-        } else{
+         redirect('usuarios/acceso');
+     } else{
+         $this->load->model('Usuarios_model');
+         $p=$this->Usuarios_model->permisos($this->session->userdata('permiso'));
+         if($p->Usuarios==1){  
 
-            $this->load->model('Usuarios_model');
-            $p=$this->Usuarios_model->comprobar_permisos($this->session->userdata('permiso'));
-         if($p->crear_usuarios==1){  */
-         $this->load->view('templates/header', $data);
-         $this->load->view('navbars/admin', $data);
-          $this->load->view('User/Usuarios', $data);     
-          $this->load->view('templates/footer', $data); 
-        /*}else{
-            redirect($last);
+            $data['Permisos']=$p->Permisos;
+            $data['LVS']=$p->LibroVentaSucursal;
+            $data['LV']=$p->LibroVentaConsolidado;
+            $data['Facturacion']=$p->Facturacion;
+            $data['Usuarios']=$p->Usuarios;
+              $data['Empresas']=$p->Empresas;
 
-                }        
+        $this->load->view('templates/header');
+        $this->load->view('navbars/admin',$data);
+        $this->load->view('User/Usuarios');     
+        $this->load->view('templates/footer');
+        }else{
+            redirect($last);  
+        }
 
-
-        }*/
+    }
      
        
     }

@@ -41,7 +41,7 @@
                         <td>{{ row.Usuario}}</td>
                             <td>{{ row.Nombre}}</td>
                             <td>{{ row.Apellido}}</td>
-                            <td>{{ row.Fecha_de_registro}}</td>
+                            <td>{{ row.Fecha_registro}}</td>
                             <td>{{ row.Privilegios}}</td>                                  
                             <td><span class="glyphicon" ng-class="( (row.Estatus==1) ? 'mdi-action-done activo' : 'mdi-action-highlight-remove inactivo')" aria-hidden="true" title="ACTIVO" style="color:green"></span></td>
                             <td>
@@ -56,7 +56,7 @@
                 <div tasty-pagination></div>
             </div>
 
-
+<!--NUEVO MODAL-->
             <div id="nuevo_usuario" class="modal fade" role="dialog">
                 <div class="modal-dialog">                
                     <div class="modal-content">
@@ -69,13 +69,13 @@
                                 <div class="form-group">
                                     <md-input-container flex>
                                         <label>Usuario</label>
-                                        <input ng-model="user2.usuario" name="usuario_noticia" type="text">
+                                        <input ng-model="user2.Usuario" name="usuario" type="text">
                                     </md-input-container>
                                 </div>
                                 <div class="form-group">
                                     <md-input-container flex>
                                         <label>Nombre</label>
-                                        <input maxlength="30" ng-model="user2.nombre" ng-readonly="false" pattern="[a-zA-Z]+" type="text" name="titulo_noticia">
+                                        <input maxlength="30" ng-model="user2.Nombre" ng-readonly="false" pattern="[a-zA-Z]+" type="text" name="titulo_noticia">
                                         <ng-messages for="formNoticiaM.usuario_noticia.$error" role="alert" ng-if="submitted">
                                             <ng-message when="required">Debe indicar un Titulo</ng-message>
                                             <ng-message when="pattern">El titulo deben ser caracteres</ng-message>  
@@ -86,7 +86,7 @@
                                    <div class="form-group">
                                     <md-input-container flex>
                                         <label>Apellido</label>
-                                        <input ng-model="user2.apellido"  ng-readonly="false" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="detalle_noticia" type="text">
+                                        <input ng-model="user2.Apellido"  ng-readonly="false" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="detalle_noticia" type="text">
 
                                     </md-input-container>
                                 </div>
@@ -94,22 +94,22 @@
                                 <div class="form-group">
                                     <md-input-container flex>
                                         <label>Permiso</label>
-                                        <input ng-model="user2.id_permiso"  ng-readonly="false" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="ubicacion_noticia" type="text">
+                                        <input ng-model="user2.id_Grupo"  ng-readonly="false" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="ubicacion_noticia" type="text">
 
                                     </md-input-container>
-                                    <md-select placeholder="Assign to user" ng-model="user2.id_permiso" md-on-open="cargarP()" style="min-width: 200px;">
-                                    <md-option ng-value="user" ng-repeat="user in users">{{per.descripcion}}</md-option>
+                                    <md-select placeholder="Assign to user" ng-model="user2.id_Grupo" md-on-open="cargarP()" style="min-width: 200px;">
+                                    <md-option ng-value="user" ng-repeat="user in users">{{per.Descripcion}}</md-option>
                                 </md-select>
                                 </div>
                                 
                                  <div class="form-group">
                                     <md-input-container flex>
                                         <label>Contaseña</label>
-                                        <input ng-model="user2.pass"  ng-readonly="false" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="pass" type="password" >
+                                        <input ng-model="user2.Clave"  ng-readonly="false" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="pass" type="password" >
                                     </md-input-container>
                                 </div>
                                  <div class="form-group">
-                                    <md-switch ng-model="user2.estatus">
+                                    <md-switch ng-model="user2.Estatus">
                                         Activo
                                     </md-switch>
                                 </div>
@@ -143,14 +143,14 @@
                                 <div class="form-group">
                                     <md-input-container flex>
                                         <label>Usuario</label>
-                                        <input ng-model="usuarioN.usuario"  ng-readonly="true" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="usuario_noticia" type="text">
+                                        <input ng-model="usuarioN.Usuario"  ng-readonly="true" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="usuario_noticia" type="text">
 
                                     </md-input-container>
                                 </div>
                                 <div class="form-group">
                                     <md-input-container flex>
                                         <label>Nombre</label>
-                                        <input maxlength="30" ng-model="usuarioN.nombre" ng-readonly="false" pattern="[a-zA-Z]+" type="text" name="titulo_noticia">
+                                        <input maxlength="30" ng-model="usuarioN.Nombre" ng-readonly="false" pattern="[a-zA-Z]+" type="text" name="titulo_noticia">
                                         <ng-messages for="formNoticiaM.usuario_noticia.$error" role="alert" ng-if="submitted">
                                             <ng-message when="required">Debe indicar un Titulo</ng-message>
                                             <ng-message when="pattern">El titulo deben ser caracteres</ng-message>  
@@ -161,32 +161,32 @@
                                    <div class="form-group">
                                     <md-input-container flex>
                                         <label>Apellido</label>
-                                        <input ng-model="usuarioN.apellido"  ng-readonly="false" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="detalle_noticia" type="text">
+                                        <input ng-model="usuarioN.Apellido"  ng-readonly="false" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="detalle_noticia" type="text">
 
                                     </md-input-container>
                                 </div>
                                 <div class="form-group">
                                     <md-input-container flex>
                                         <label>Fecha de Registro</label>
-                                        <input ng-model="usuarioN.fecha_registro" ng-readonly="true"   name="fechahora">                            
+                                        <input ng-model="usuarioN.Fecha_registro" ng-readonly="true"   name="fechahora">                            
                                     </md-input-container>
                                 </div>
                                 <div class="form-group">
                                     <md-input-container flex>
                                         <label>Permiso</label>
-                                        <input ng-model="usuarioN.descripcion"  ng-readonly="false" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="ubicacion_noticia" type="text">
+                                        <input ng-model="usuarioN.Descripcion"  ng-readonly="false" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="ubicacion_noticia" type="text">
 
                                     </md-input-container>
                                 </div>
                                 <div class="form-group">
-                                    <md-switch ng-model="usuarioN.estatus">
+                                    <md-switch ng-model="usuarioN.Estatus">
                                         Activo
                                     </md-switch>
                                 </div>
                                  <div class="form-group">
                                     <md-input-container flex>
                                         <label>Contaseña</label>
-                                        <input ng-model="usuarioN.pass"  ng-readonly="false" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="pass" type="password" >
+                                        <input ng-model="usuarioN.Clave"  ng-readonly="false" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="pass" type="password" >
                                     </md-input-container>
                                 </div>
                                 

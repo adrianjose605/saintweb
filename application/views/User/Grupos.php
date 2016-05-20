@@ -26,7 +26,7 @@
                 
             </form>
 
-
+<!-- modal de nuevo grupo -->
             <div id="nuevo_grupo" class="modal fade" role="dialog">
                 <div class="modal-dialog">                
                     <div class="modal-content">
@@ -36,7 +36,7 @@
                         </div>
                         <div class="modal-body">
                             <form class="form-inline" name="formGrupoN" role="form" novalidate>
-                                <div class="form-group">
+                                <div class="form-group porcentaje100">
                                     <md-input-container flex>
                                         <label>Descripcion</label>
                                         <input ng-model="permiso2.Descripcion"  pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="usuario_noticia" type="text">
@@ -71,6 +71,11 @@
                                     </md-switch>
                                 </div>
                                 <div class="form-group">
+                                    <md-switch ng-model="permiso2.Empresas">
+                                        Control de Empresas
+                                    </md-switch>
+                                </div>
+                                <div class="form-group">
                                     <md-switch ng-model="permiso2.Estatus">
                                         Grupo Activo
                                     </md-switch>
@@ -89,7 +94,7 @@
             </div>
 
 
-
+<!--TABLA -->
 
             <div ng-show="contador != 0" tasty-table bind-resource-callback="getResourceG" bind-filters="paginador">
                 <table class="table table-striped table-condensed" >
@@ -108,7 +113,10 @@
                             <td><span class="glyphicon" ng-class="( (row.Permisos==1) ? 'mdi-action-done activo' : 'mdi-action-highlight-remove inactivo')" aria-hidden="true" title="ACTIVO" style="color:green"></span></td>
 
                             <td><span class="glyphicon" ng-class="( (row.Estatus==1) ? 'mdi-action-done activo' : 'mdi-action-highlight-remove inactivo')" aria-hidden="true" title="ACTIVO" style="color:green"></span></td>
-                           
+                            
+                            <td><span class="glyphicon" ng-class="( (row.Empresas==1) ? 'mdi-action-done activo' : 'mdi-action-highlight-remove inactivo')" aria-hidden="true" title="ACTIVO" style="color:green"></span></td>
+
+
                             <td>
                                 <div class="btn-group">
                                     <a class="btn btn-material-orange btn-xs" href=""  ng-click="getGrupos(row.Opciones)" data-toggle="modal" data-target="#modificar_grupo"><span class="glyphicon glyphicon-search"></span></a>
@@ -129,7 +137,7 @@
 
 
 
-            <!--MODAL DE EDICION-->
+<!--MODAL DE EDICION-->
             <div id="modificar_grupo" class="modal fade" >
                 <div class="modal-dialog modal-wide-md">
                     <!-- Modal content-->
@@ -140,7 +148,7 @@
                         </div>
                         <div class="modal-body">
                             <form class="form-inline" name="formGrupoM" role="form" novalidate>
-                                 <div class="form-group">
+                                 <div class="form-group porcentaje100">
                                     <md-input-container flex>
                                         <label>Descripcion</label>
                                         <input ng-model="permiso.Descripcion"  pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="usuario_noticia" type="text">
@@ -172,6 +180,11 @@
                                 <div class="form-group">
                                     <md-switch ng-model="permiso.Permisos">
                                         Permisos
+                                    </md-switch>
+                                </div>
+                                   <div class="form-group">
+                                    <md-switch ng-model="permiso.Empresas">
+                                        Empresas
                                     </md-switch>
                                 </div>
                                 <div class="form-group">

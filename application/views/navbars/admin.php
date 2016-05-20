@@ -42,7 +42,7 @@
                       <?php if($LV==1): ?>
          
                     <md-list class="listdemoListControls">
-                        <md-list-item ng-click="navigateTo('User/GUsuarios')">
+                        <md-list-item ng-click="navigateTo('Admin/Saa_libs/Libro_Ventas')">
                             <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Libro de ventas <i class="fa fa-file-pdf-o" aria-hidden="true"></i></p>
                         </md-list-item>
                         
@@ -51,7 +51,7 @@
                            <?php if($Facturacion==1): ?>
          
                       <md-list class="listdemoListControls">
-                        <md-list-item ng-click="navigateTo('User/GUsuarios')">
+                        <md-list-item ng-click="navigateTo('Admin/Saa_libs/Ventas')">
                             <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Facturacion <i class="fa fa-file-pdf-o" aria-hidden="true"></i></p>
                         </md-list-item>
                            <?php endif ?>
@@ -60,15 +60,17 @@
                      
                 </accordion-group>
                
-            <?php if($Usuarios==1): ?>
+            <?php if($Usuarios==1 || $Permisos==1): ?>
                 <accordion-group>
                     <accordion-heading>
                         <p><span class="glyphicon glyphicon-menu-down" style="margin-right: 10px;"></span> Control de Acceso</p>
                     </accordion-heading> 
                     <md-list class="listdemoListControls">
+                       <?php if($Usuarios==1): ?>
                         <md-list-item ng-click="navigateTo('User/LUsuarios')">
                             <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Usuarios de acceso</p>
                         </md-list-item>
+                          <?php endif ?>
                         <?php if($Permisos==1): ?>
                         <md-list-item ng-click="navigateTo('User/GUsuarios')">
                             <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Grupos de usuarios</p>
@@ -78,22 +80,23 @@
 
                 </accordion-group>
            <?php endif ?>
+            <?php if($Empresas==1): ?>
                   <accordion-group>
                     <accordion-heading>
                         <p><span class="glyphicon glyphicon-menu-down" style="margin-right: 10px;"></span> Control de empresas</p>
                     </accordion-heading> 
                     <md-list class="listdemoListControls">
-                        <md-list-item ng-click="navigateTo('User/GUsuarios')">
+                        <md-list-item ng-click="navigateTo('System/Empresas')">
                             <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Registro de Empresas</p>
                         </md-list-item>
                         
-                        <md-list-item ng-click="navigateTo('User/GUsuarios')">
+                        <md-list-item ng-click="navigateTo('System/Empresas/Sucursales')">
                             <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Sucursales</p>
                         </md-list-item>
                     </md-list>
 
                 </accordion-group>
-                
+                 <?php endif ?> 
             </accordion>
             <h4>Rango de Fecha a Consultar</h4>
             <md-datepicker ng-model="desde" md-placeholder="Desde"></md-datepicker>

@@ -8,11 +8,31 @@ class Saa_libs extends CI_Controller {
     }
 
     public function index() {
+         if (!$this->session->userdata('logueado')) {
+
+         redirect('usuarios/acceso');
+     } else{
+         $this->load->model('Usuarios_model');
+         $p=$this->Usuarios_model->permisos($this->session->userdata('permiso'));
+         if($p->Facturacion==1){  
+
+            $data['Permisos']=$p->Permisos;
+            $data['LVS']=$p->LibroVentaSucursal;
+            $data['LV']=$p->LibroVentaConsolidado;
+            $data['Facturacion']=$p->Facturacion;
+            $data['Usuarios']=$p->Usuarios;
+            $data['Empresas']=$p->Empresas;
 
         $this->load->view('templates/header');
-        $this->load->view('navbars/admin');
+        $this->load->view('navbars/admin',$data);
         $this->load->view('Admin/Facturas');     
         $this->load->view('templates/footer');
+        }else{
+            redirect($last);  
+        }
+
+    }
+       
     }
 
     public function dashboard() {
@@ -21,10 +41,18 @@ class Saa_libs extends CI_Controller {
          redirect('usuarios/acceso');
      } else{
          $this->load->model('Usuarios_model');
-         $p=$this->Usuarios_model->comprobar_permisos($this->session->userdata('permiso'));
+         $p=$this->Usuarios_model->permisos($this->session->userdata('permiso'));
          if($p->LibroVentaConsolidado==1){  
+
+            $data['Permisos']=$p->Permisos;
+            $data['LVS']=$p->LibroVentaSucursal;
+            $data['LV']=$p->LibroVentaConsolidado;
+            $data['Facturacion']=$p->Facturacion;
+            $data['Usuarios']=$p->Usuarios;
+            $data['Empresas']=$p->Empresas;
+
             $this->load->view('templates/header');
-            $this->load->view('navbars/admin');
+            $this->load->view('navbars/admin',$data);
             $this->load->view('Admin/Dashboard');     
             $this->load->view('templates/footer');
         }else{

@@ -40,7 +40,7 @@ angular.module('saint')
 	}
 
 
-
+//////////////////////////////////GRUPOS DE USUARIOS////////////////////////////////////////////////
 // obtener info de un grupo para los swich
 	$scope.getGrupos= function(id){
 		console.log('/User/GUsuarios/verG/'+id);
@@ -52,7 +52,7 @@ angular.module('saint')
 					data.Facturacion=data.Facturacion=='1';
 					data.Estatus=data.Estatus=='1';
 					data.Usuarios=data.Usuarios=='1';
-			
+					data.Empresas=data.Empresas=='1';
 			
 					$scope.permiso=data;					
 					//console.log($scope.alerta_nueva);
@@ -65,31 +65,7 @@ angular.module('saint')
 			});
 	}
 
-// obtener info de un usuario para los swich
-$scope.getUsuarios= function(id){
-	  console.log('User/LUsuarios/verU/'+id);
-		$http.get('User/LUsuarios/verU/'+id).
-			success(function(data, status, headers, config) {				
-					data.estatus=data.estatus=='1';
-					
-					//console.log(data);
-					$scope.usuarioN=data;					
-					//console.log($scope.alerta_nueva);
-					var $j = jQuery.noConflict();
-	                $j("#modificar_usuario").modal("show");				
-			}).
-			error(function(data, status, headers, config) {
-				console.log(status);
-				hacerToast('error','Error '+status,$mdToast);
-			});
-	}
-
-		$scope.recargar=function(){
-			$scope.paginador.valor=!$scope.paginador.valor;
-		}
-
-
-	$scope.getResourceG = function (params, paramsObj) {	
+$scope.getResourceG = function (params, paramsObj) {	
 		if(!paramsObj){
 			console.log('Cambio  de Asignacion');
 			paramsObj=$scope.paginador;
@@ -121,40 +97,6 @@ $scope.getUsuarios= function(id){
 			}
 		});
 	};
-
-	$scope.getResourceU = function (params, paramsObj) {	
-		if(!paramsObj){
-			console.log('Cambio  de Asignacion');
-			paramsObj=$scope.paginador;
-			console.log(paramsObj);
-		}
-
-		
-		$scope.paginador=paramsObj;
-		console.log('Antes de la Carga Inicial');
-		
-
-		var urlApi = 'User/LUsuarios/tabla_principal_usuarios/'+paramsObj.count+'/'+paramsObj.page+'/';
-	
-		if(paramsObj.sortBy){
-			urlApi+=paramsObj.sortBy+'/'+paramsObj.sortOrder;    
-		}
-
-		return $http.post(urlApi,$scope.busqueda).then(function (response) {
-			
-			
-			$scope.contador=response.data.pagination.size;
-			
-			return {
-				'rows': response.data.rows,
-				'header': response.data.header,
-				'pagination': response.data.pagination,
-				'sortBy': response.data['sort-by'],
-				'sortOrder': response.data['sort-order']
-			}
-		});
-	};
-
 
 
 	$scope.registrar_grupo=function(tipo){	
@@ -189,6 +131,67 @@ $scope.getUsuarios= function(id){
 		
 
 	};
+
+///////////////////////USUARIOS///////////////////////////////////////////////////////
+// obtener info de un usuario para los swich
+$scope.getUsuarios= function(id){
+	  console.log('User/LUsuarios/verU/'+id);
+		$http.get('User/LUsuarios/verU/'+id).
+			success(function(data, status, headers, config) {				
+					data.estatus=data.estatus=='1';
+					
+					//console.log(data);
+					$scope.usuarioN=data;					
+					//console.log($scope.alerta_nueva);
+					var $j = jQuery.noConflict();
+	                $j("#modificar_usuario").modal("show");				
+			}).
+			error(function(data, status, headers, config) {
+				console.log(status);
+				hacerToast('error','Error '+status,$mdToast);
+			});
+	}
+
+		$scope.recargar=function(){
+			$scope.paginador.valor=!$scope.paginador.valor;
+		}
+
+
+	
+
+	$scope.getResourceU = function (params, paramsObj) {	
+		if(!paramsObj){
+			console.log('Cambio  de Asignacion');
+			paramsObj=$scope.paginador;
+			console.log(paramsObj);
+		}
+
+		
+		$scope.paginador=paramsObj;
+		console.log('Antes de la Carga Inicial');
+		
+
+		var urlApi = 'User/LUsuarios/tabla_principal_usuarios/'+paramsObj.count+'/'+paramsObj.page+'/';
+	
+		if(paramsObj.sortBy){
+			urlApi+=paramsObj.sortBy+'/'+paramsObj.sortOrder;    
+		}
+
+		return $http.post(urlApi,$scope.busqueda).then(function (response) {
+			
+			
+			$scope.contador=response.data.pagination.size;
+			
+			return {
+				'rows': response.data.rows,
+				'header': response.data.header,
+				'pagination': response.data.pagination,
+				'sortBy': response.data['sort-by'],
+				'sortOrder': response.data['sort-order']
+			}
+		});
+	};
+
 
 
 

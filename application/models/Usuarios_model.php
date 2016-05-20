@@ -17,7 +17,7 @@ public function edit_grupos() {
         
         
         $this->db->where('id', $arr['id']);        
-        
+        unset($arr['id']);
         if ($this->db->update('sch_sistema.SIS_PERMISOS', $arr)) {
             $res['status'] = 1;
             $res['mensaje'] = 'Actualizado con Exito';
@@ -59,7 +59,7 @@ public function edit_grupos() {
     return $res;
 }
     public function get_Grupo($id) {
-        $this->db->select('Descripcion,LibroVentaSucursal, LibroVentaConsolidado,Facturacion,Usuarios,Permisos, Estatus, id');
+        $this->db->select('Descripcion,LibroVentaSucursal, LibroVentaConsolidado,Facturacion,Usuarios,Permisos, Estatus, Empresas, id');
         $this->db->where('id', $id);
         $query = $this->db->get('sch_sistema.SIS_PERMISOS');
         return $query->result_array();
@@ -93,7 +93,7 @@ public function edit_grupos() {
         $query1 = $this->db->get('sch_sistema.SIS_PERMISOS');
         $respuesta['cantidad'] = $query1->result_array();
 
-        $this->db->select('Descripcion,LibroVentaSucursal, LibroVentaConsolidado,Facturacion,Usuarios,Permisos, Estatus, id AS Opciones');
+        $this->db->select('Descripcion,LibroVentaSucursal, LibroVentaConsolidado,Facturacion,Usuarios,Permisos, Estatus,Empresas, id AS Opciones');
         if ($arr['estatus'])
             $this->db->where('Estatus', $arr['estatus']);
         if (!empty($likes))
@@ -112,7 +112,7 @@ public function edit_grupos() {
     }
 
 
-////////////////////USUARIOS/////////////////////////////////////////////////////////////////
+////////////////////PERMISOS/////////////////////////////////////////////////////////////////
 
 
 
@@ -126,14 +126,13 @@ public function edit_grupos() {
 
     }
 
-
-    function login($usuario, $clave){
+    /*function login($usuario, $clave){
         $query="call iniciar_sesion('$usuario', '$clave')";
         $result=$this->db->query($query);
 
         return $result->result_array();
 
-    }
+    }*/
 
 // EN FUNCIONAMIENTO
     function acceso($data){
@@ -162,7 +161,7 @@ public function edit_grupos() {
 
 
     
-    function verificacion() {
+    /*function verificacion() {
         $data = $this->getInputFromAngular();
         $usuario = array('nombre' => $data('nom'),
             'nombre' => $data('nom'),
@@ -187,8 +186,9 @@ public function edit_grupos() {
 
             return 3;
         }
-    }
+    }*/
 
+////////////////////Usuarios/////////////////////////////////////////////////////////////////
     public function crear() {
         $data = $this->getInputFromAngular();
         $usuario = [];
@@ -257,16 +257,16 @@ public function edit_grupos() {
 
 
     public function get_usuarios($id) {
-        $this->db->select('usuario,nombre,apellido, fecha_registro,usuarios.estatus, permisos.descripcion, usuarios.id, permisos.id, usuarios.pass');
-        $this->db->where('usuarios.id', $id);
-        $this->db->where('permisos.id=usuarios.id_permiso');
-        $query = $this->db->get('usuarios, permisos');
+        $this->db->select('Usuario,Nombre,Apellido, fecha_registro,sch_sistema.SIS_USUARIO.Estatus, sch_sistema.SIS_PERMISOS.Descripcion, sch_sistema.SIS_USUARIO.id, sch_sistema.SIS_PERMISOS.id, sch_sistema.SIS_USUARIO.Clave');
+        $this->db->where('sch_sistema.SIS_USUARIO.id', $id);
+        $this->db->where(' sch_sistema.SIS_PERMISOS.id=sch_sistema.SIS_USUARIO.id_Grupo');
+        $query = $this->db->get('sch_sistema.SIS_USUARIO, sch_sistema.SIS_PERMISOS');
         return $query->result_array();
     }
 
     
     
-    public function get_Grupos_sel($activos=false){
+    /*public function get_Grupos_sel($activos=false){
         $this->db->select('ver_noticias,enviar_noticias,boton_panico,crear_usuarios,permisos,estatus,descripcion,id');
         
         if ($activos)
@@ -274,7 +274,7 @@ public function edit_grupos() {
         
         $query = $this->db->get('permisos');
         return $query->result_array();
-    }
+    }*/
 
 
     public function get_Usuarios_sel($activos=false){
@@ -298,9 +298,9 @@ public function edit_grupos() {
 
         for ($i = 0; $i != count($params); $i++) {
             if ($i == 0)
-                $likes.="(usuario LIKE '%".$params[$i]."%' OR nombre LIKE '%" . $params[$i] . "%'";
+                $likes.="(Usuario LIKE '%".$params[$i]."%' OR Nombre LIKE '%" . $params[$i] . "%'";
             else
-                $likes.=" OR usuario LIKE '%".$params[$i]."%' OR nombre LIKE '%" . $params[$i] . "%'";
+                $likes.=" OR Usuario LIKE '%".$params[$i]."%' OR Nombre LIKE '%" . $params[$i] . "%'";
             if ($i + 1 == count($params))
                 $likes.=")";
         }
@@ -312,16 +312,16 @@ public function edit_grupos() {
         $this->db->select('COUNT(1) AS cantidad');
 
 
-        $query1 = $this->db->get('usuarios');
+        $query1 = $this->db->get('sch_sistema.SIS_USUARIO');
         $respuesta['cantidad'] = $query1->result_array();
 
-        $this->db->select('usuario AS Usuario,nombre AS Nombre,apellido AS Apellido,fecha_registro AS Fecha_de_registro,permisos.descripcion as Privilegios, usuarios.estatus AS Estatus, usuarios.id as Opciones');
+        $this->db->select('Usuario,Nombre,Apellido ,Fecha_registro ,sch_sistema.SIS_PERMISOS.Descripcion as Privilegios, sch_sistema.SIS_USUARIO.Estatus, sch_sistema.SIS_USUARIO.id as Opciones');
 
-        $this->db->where('usuarios.id_permiso = permisos.id');
+        $this->db->where('sch_sistema.SIS_USUARIO.id_Grupo = sch_sistema.SIS_PERMISOS.id');
 
 
         if ($arr['estatus'])
-            $this->db->where('usuarios.estatus', $arr['estatus']);
+            $this->db->where('sch_sistema.SIS_USUARIO.Estatus', $arr['estatus']);
 
         
         
@@ -333,7 +333,7 @@ public function edit_grupos() {
 
 
 
-        $query = $this->db->get('usuarios, permisos');
+        $query = $this->db->get('sch_sistema.SIS_USUARIO, sch_sistema.SIS_PERMISOS');
         $respuesta['resultado'] = $query->result_array();
         $respuesta['meta'] = $query->list_fields();
         return $respuesta;
@@ -348,37 +348,37 @@ public function edit_grupos() {
         
 
 
-        $this->db->select('pass');
-        $this->db->where('usuario',$data['usuario']);
-        $result= $this->db->get('usuarios');
+        $this->db->select('Clave');
+        $this->db->where('Usuario',$data['Usuario']);
+        $result= $this->db->get('sch_sistema.SIS_USUARIO');
 
         $passw=$result->row();
 
 
-        if(($data['pass'])!=" "){
+        if(($data['Clave'])!=" "){
             $usuario = [
             'nombre' => $data['nombre'],
             'apellido' => $data['apellido'],
             'estatus' => $data['estatus'],
-            'pass'=>$data['pass']           
+            'clave'=>$data['clave']           
             ];
         }else{
             $usuario = [
-            'nombre' => $data['nombre'],
-            'apellido' => $data['apellido'],
-            'estatus' => $data['estatus'],
-            'pass'=>$data['pass']               
+            'Nombre' => $data['nombre'],
+            'Apellido' => $data['apellido'],
+            'Estatus' => $data['estatus'],
+            'Clave'=>$data['clave']               
             ];
         }
-        if(($data['descripcion'])){
-            unset($data['descripcion']);
+        if(($data['Descripcion'])){
+            unset($data['Descripcion']);
         }
         
         
-        $this->db->where('usuarios.usuario', $data['usuario']);
+        $this->db->where('Usuario', $data['Usuario']);
         
 
-        if ($this->db->update('usuarios', $usuario)) {
+        if ($this->db->update('sch_sistema.SIS_USUARIO', $usuario)) {
             $res['estatus'] = 1;
             $res['mensaje'] = 'Actualizado con Exito';
         } else {
@@ -393,7 +393,7 @@ public function edit_grupos() {
         $res = array();
         $this->db->select('usuario');
         $this->db->where('usuario', $arr['usuario']);
-        $query1 = $this->db->get('usuarios');
+        $query1 = $this->db->get('sch_sistema.SIS_USUARIO');
         if ($query1->num_rows() > 0) {
             $res['status'] = 0;
             $res['mensaje'] = 'El usuario ya esta registrado';
