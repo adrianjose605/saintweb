@@ -257,7 +257,7 @@ public function edit_grupos() {
 
 
     public function get_usuarios($id) {
-        $this->db->select('Usuario,Nombre,Apellido, fecha_registro,sch_sistema.SIS_USUARIO.Estatus, sch_sistema.SIS_PERMISOS.Descripcion, sch_sistema.SIS_USUARIO.id, sch_sistema.SIS_PERMISOS.id, sch_sistema.SIS_USUARIO.Clave');
+        $this->db->select('Usuario,Nombre,Apellido, fecha_registro,sch_sistema.SIS_USUARIO.Estatus, sch_sistema.SIS_PERMISOS.Descripcion, sch_sistema.SIS_USUARIO.id, sch_sistema.SIS_PERMISOS.id, sch_sistema.SIS_USUARIO.Clave, sch_sistema.SIS_USUARIO.Correo, sch_sistema.SIS_USUARIO.Telefono,sch_sistema.SIS_USUARIO.id_Grupo, sch_sistema.SIS_USUARIO.id_Empresa');
         $this->db->where('sch_sistema.SIS_USUARIO.id', $id);
         $this->db->where(' sch_sistema.SIS_PERMISOS.id=sch_sistema.SIS_USUARIO.id_Grupo');
         $query = $this->db->get('sch_sistema.SIS_USUARIO, sch_sistema.SIS_PERMISOS');
@@ -277,7 +277,7 @@ public function edit_grupos() {
     }*/
 
 
-    public function get_Usuarios_sel($activos=false){
+    /*public function get_Usuarios_sel($activos=false){
         $this->db->select('usuario  AS id,nombre AS Nombre, apellido as Apellido, fecha_registro as Fecha de registro');
         
         if ($activos)
@@ -285,7 +285,7 @@ public function edit_grupos() {
         
         $query = $this->db->get('usuarios');
         return $query->result_array();
-    }
+    }*/
  
     public function generar_json_tabla_principal($offset, $cantidad, $order, $type) {
         $arr = $this->getInputFromAngular();
@@ -298,9 +298,9 @@ public function edit_grupos() {
 
         for ($i = 0; $i != count($params); $i++) {
             if ($i == 0)
-                $likes.="(Usuario LIKE '%".$params[$i]."%' OR Nombre LIKE '%" . $params[$i] . "%'";
+                $likes.="(Usuario LIKE '%".$params[$i]."%' OR sch_sistema.SIS_USUARIO.Nombre LIKE '%" . $params[$i] . "%'";
             else
-                $likes.=" OR Usuario LIKE '%".$params[$i]."%' OR Nombre LIKE '%" . $params[$i] . "%'";
+                $likes.=" OR Usuario LIKE '%".$params[$i]."%' OR sch_sistema.SIS_USUARIO.Nombre LIKE '%" . $params[$i] . "%'";
             if ($i + 1 == count($params))
                 $likes.=")";
         }
@@ -315,9 +315,10 @@ public function edit_grupos() {
         $query1 = $this->db->get('sch_sistema.SIS_USUARIO');
         $respuesta['cantidad'] = $query1->result_array();
 
-        $this->db->select('Usuario,Nombre,Apellido ,Fecha_registro ,sch_sistema.SIS_PERMISOS.Descripcion as Privilegios, sch_sistema.SIS_USUARIO.Estatus, sch_sistema.SIS_USUARIO.id as Opciones');
+        $this->db->select('Usuario,sch_sistema.SIS_USUARIO.Nombre,Apellido ,sch_sistema.SIS_USUARIO.Fecha_registro ,sch_sistema.SIS_PERMISOS.Descripcion as Privilegios,sch_sistema.SIS_EMP.Nombre AS Empresa, sch_sistema.SIS_USUARIO.Estatus, sch_sistema.SIS_USUARIO.id as Opciones');
 
         $this->db->where('sch_sistema.SIS_USUARIO.id_Grupo = sch_sistema.SIS_PERMISOS.id');
+        $this->db->where('sch_sistema.SIS_USUARIO.id_Empresa = sch_sistema.SIS_EMP.id');
 
 
         if ($arr['estatus'])
@@ -333,12 +334,20 @@ public function edit_grupos() {
 
 
 
-        $query = $this->db->get('sch_sistema.SIS_USUARIO, sch_sistema.SIS_PERMISOS');
+        $query = $this->db->get('sch_sistema.SIS_USUARIO, sch_sistema.SIS_PERMISOS, sch_sistema.SIS_EMP');
         $respuesta['resultado'] = $query->result_array();
         $respuesta['meta'] = $query->list_fields();
         return $respuesta;
     }
+public function get_usuarios_sel($activos) {
+        $this->db->select('id,Descripcion AS val');
 
+        if ($activos)
+            $this->db->where('Estatus', $activos);
+
+        $query = $this->db->get('sch_sistema.SIS_PERMISOS');
+        return $query->result_array();
+    }
 
 
     public function edit_usuarios() {
@@ -362,7 +371,9 @@ public function edit_grupos() {
             'Estatus' => $data['Estatus'],
             'Clave'=>$data['Clave'] ,
             'Correo'=>$data['Correo'], 
-            'Telefono'=>$data['Telefono']               
+            'Telefono'=>$data['Telefono'],
+            'id_Grupo'=>$data['id_Grupo'],
+             'id_Empresa'=>$data['id_Empresa']                 
             ];
         }else{
             $usuario = [
@@ -371,14 +382,12 @@ public function edit_grupos() {
             'Estatus' => $data['Estatus'],
            'Clave'=>$data['Clave'] ,
             'Correo'=>$data['Correo'], 
-            'Telefono'=>$data['Telefono']                
+            'Telefono'=>$data['Telefono'],
+            'id_Grupo'=>$data['id_Grupo'],
+             'id_Empresa'=>$data['id_Empresa']                
             ];
         }
-        if(($data['Descripcion'])){
-            unset($data['Descripcion']);
-        }
-        
-        
+               
         $this->db->where('Usuario', $data['Usuario']);
         
 

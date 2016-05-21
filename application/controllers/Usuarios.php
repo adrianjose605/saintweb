@@ -36,7 +36,7 @@ public function cerrar(){
         );
          $this->session->set_userdata($usuario_data);
         
-         redirect('usuarios/personas');
+         redirect('usuarios/acceso');
 
 
 
@@ -49,7 +49,7 @@ public function cerrar(){
          
         if($usuario==NULL){
 
-            redirect('usuarios/personas');
+            redirect('usuarios/acceso');
 
         }
 
@@ -69,7 +69,7 @@ public function cerrar(){
              redirect('Admin/Saa_Libs/Dashboard');
             }else{
 
-             redirect('usuarios/personas');
+             redirect('usuarios/acceso');
          };
        
         $this->load->model('usuarios_model');

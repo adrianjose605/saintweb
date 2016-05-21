@@ -1,13 +1,14 @@
 angular.module('saint')
 
-.controller('GUsuarios', ['$scope','$http','$mdToast', us])
+.controller('Emp', ['$scope','$http','$mdToast', us])
 
 
 
 	function us($scope,$http,$mdToast){
 	$scope.user={};
-	$scope.permiso={};$scope.permiso2={};
-	$scope.user={};$scope.user2={}; $scope.Pass={clave:''}; $scope.per={descripcion:''};
+	$scope.emp2={};
+	$scope.empresa={};$scope.empresa2={};
+	$scope.user={};$scope.emp={}; $scope.Pass={Clave:''}; $scope.per={descripcion:''};
 	
 	$scope.busqueda={estatus:true,query:''};
 	$scope.paginador={valor:true};
@@ -17,11 +18,12 @@ angular.module('saint')
 
 	$scope.resetForm = function(){
 		$scope.user=angular.copy({});
-		$scope.user2=angular.copy({});
+		$scope.emp=angular.copy({});
+		$scope.emp2=angular.copy({});
 		$scope.usuarioN=angular.copy({});
 		$scope.Pass=angular.copy({});
-		$scope.permiso=angular.copy({});
-		$scope.permiso2=angular.copy({});
+		$scope.empresa=angular.copy({});
+		$scope.empresa2=angular.copy({});
 		$scope.submitted=false;
 	}
 
@@ -42,19 +44,15 @@ angular.module('saint')
 
 //////////////////////////////////GRUPOS DE USUARIOS////////////////////////////////////////////////
 // obtener info de un grupo para los swich
-	$scope.getGrupos= function(id){
-		console.log('/User/GUsuarios/verG/'+id);
-		$http.get('User/GUsuarios/verG/'+id).
+	$scope.getEmpresas= function(id){
+		console.log('/Sys/Empresas/verE/'+id);
+		$http.get('Sys/Empresas/verE/'+id).
 			success(function(data, status, headers, config) {				
-					data.Permisos=data.Permisos=='1';
-					data.LibroVentaSucursal=data.LibroVentaSucursal=='1';
-					data.LibroVentaConsolidado=data.LibroVentaConsolidado=='1';
-					data.Facturacion=data.Facturacion=='1';
+					
 					data.Estatus=data.Estatus=='1';
-					data.Usuarios=data.Usuarios=='1';
-					data.Empresas=data.Empresas=='1';
+				
 			
-					$scope.permiso=data;					
+					$scope.emp2=data;					
 					//console.log($scope.alerta_nueva);
 					var $j = jQuery.noConflict();
 	                $j("#modificar_grupo").modal("show");				
@@ -103,11 +101,11 @@ $scope.getResourceG = function (params, paramsObj) {
 		var url='',obj={};
 			if(tipo){
 			url='User/GUsuarios/nuevo_grupo';
-			obj=$scope.permiso2;
+			obj=$scope.empresa2;
 		}else{
 			
 			url='User/GUsuarios/modificar_grupo';
-			obj=$scope.permiso;
+			obj=$scope.empresa;
 			}
 			
 			
@@ -134,20 +132,19 @@ $scope.getResourceG = function (params, paramsObj) {
 
 ///////////////////////USUARIOS///////////////////////////////////////////////////////
 // obtener info de un usuario para los swich
-$scope.getUsuarios= function(id){
-	$scope.cargarGrupos();		
-$scope.cargarEmpresas();
-	  console.log('User/LUsuarios/verU/'+id);
-		$http.get('User/LUsuarios/verU/'+id).
+$scope.getEmpresas= function(id){
+
+	  console.log('Sys/Empresas/verE/'+id);
+		$http.get('Sys/Empresas/verE/'+id).
 			success(function(data, status, headers, config) {				
 					data.Estatus=data.Estatus=='1';
 					
 					//console.log(data);
-					$scope.usuarioN=data;	
+					$scope.emp2=data;	
 					console.log(data);				
 					//console.log($scope.alerta_nueva);
 					var $j = jQuery.noConflict();
-	                $j("#modificar_usuario").modal("show");				
+	                $j("#modificar_empresa").modal("show");				
 			}).
 			error(function(data, status, headers, config) {
 				console.log(status);
@@ -162,7 +159,7 @@ $scope.cargarEmpresas();
 
 	
 
-	$scope.getResourceU = function (params, paramsObj) {	
+	$scope.getResourceE = function (params, paramsObj) {	
 		if(!paramsObj){
 			console.log('Cambio  de Asignacion');
 			paramsObj=$scope.paginador;
@@ -174,7 +171,7 @@ $scope.cargarEmpresas();
 		console.log('Antes de la Carga Inicial');
 		
 
-		var urlApi = 'User/LUsuarios/tabla_principal_usuarios/'+paramsObj.count+'/'+paramsObj.page+'/';
+		var urlApi = 'Sys/Empresas/tabla_principal_empresas/'+paramsObj.count+'/'+paramsObj.page+'/';
 	
 		if(paramsObj.sortBy){
 			urlApi+=paramsObj.sortBy+'/'+paramsObj.sortOrder;    
@@ -198,18 +195,18 @@ $scope.cargarEmpresas();
 
 
 
-	$scope.registrar_usuario=function(tipo){
+	$scope.registrar_empresa=function(tipo){
 		
 		var url='',obj={};
 			if(tipo){
-			url='User/LUsuarios/nuevo_usuario';
-			obj=$scope.user2;
-			//console.log(obj);
+			url='Sys/Empresas/nueva_empresa';
+			obj=$scope.emp;
+			console.log(obj);
 		}else{
 			
-			url='User/LUsuarios/modificar_usuarios';
+			url='Sys/Empresas/modificar_empresas';
 			
-				obj=$scope.usuarioN;
+				obj=$scope.emp2;
 				//console.log(obj);
 			}
 
@@ -268,29 +265,5 @@ $scope.cargarEmpresas();
 
 	};
 
-$scope.cargarGrupos=function(){
-		return $http.get('User/LUsuarios/ver_sel').
-		success(function(data, status, headers, config) {				
-			$scope.grupo_t=data;
-			
-			 console.log($scope.grupo_t);
-		}).
-		error(function(data, status, headers, config) {
-			console.log(status);
-			hacerToast('error','Ocurrio un Error al Cargar los Tipos de Jugadas');
-		});
-	}	
-$scope.cargarEmpresas=function(){
-		return $http.get('Sys/Empresas/ver_sel').
-		success(function(data, status, headers, config) {				
-			$scope.empresa_t=data;
-			
-			 console.log($scope.empresa_t);
-		}).
-		error(function(data, status, headers, config) {
-			console.log(status);
-			hacerToast('error','Ocurrio un Error al Cargar los Tipos de Jugadas');
-		});
-	}
 }
  

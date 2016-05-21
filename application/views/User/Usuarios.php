@@ -43,6 +43,7 @@
                             <td>{{ row.Apellido}}</td>
                             <td>{{ row.Fecha_registro}}</td>
                             <td>{{ row.Privilegios}}</td>                                  
+                            <td>{{ row.Empresa}}</td>                                  
                             <td><span class="glyphicon" ng-class="( (row.Estatus==1) ? 'mdi-action-done activo' : 'mdi-action-highlight-remove inactivo')" aria-hidden="true" title="ACTIVO" style="color:green"></span></td>
                             <td>
                                 <div class="btn-group">
@@ -70,7 +71,7 @@
                                     <md-input-container flex>
                                         <label>Usuario</label>
                                         <input ng-model="user2.Usuario" type="text" name="Usuario">
-                                         <ng-messages for="formNoticiaM.Usuario.$error" role="alert" ng-if="submitted">
+                                         <ng-messages for="formUsuarioN.Usuario.$error" role="alert" ng-if="submitted">
                                             <ng-message when="required">Debe indicar un Usuario</ng-message>
                                             <ng-message when="pattern">El titulo deben ser caracteres</ng-message>  
                                         </ng-messages>
@@ -80,7 +81,7 @@
                                     <md-input-container flex>
                                         <label>Nombre</label>
                                         <input maxlength="30" ng-model="user2.Nombre" ng-readonly="false" pattern="[a-zA-Z]+" type="text" name="nombre_usuario">
-                                        <ng-messages for="formNoticiaM.Nombre.$error" role="alert" ng-if="submitted">
+                                        <ng-messages for="formUsuarioN.Nombre.$error" role="alert" ng-if="submitted">
                                             <ng-message when="required">Debe indicar un Nombre</ng-message>
                                             <ng-message when="pattern">El titulo deben ser caracteres</ng-message>  
                                         </ng-messages>
@@ -97,7 +98,7 @@
                                 <div class="form-group">
                                     <md-input-container flex>
                                         <label>Correo</label>
-                                        <input ng-model="user2.Correo"  pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="correo" type="mail">
+                                        <input ng-model="user2.Correo"  pattern="^[a-zA-Z0-9áéíóúñ@_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="correo" type="mail">
 
                                     </md-input-container>
                                 </div>
@@ -110,14 +111,29 @@
                                 </div>
                                 <div class="form-group">
                                     <md-input-container flex>
-                                        <label>Permiso</label>
-                                        <input ng-model="user2.id_Grupo"  ng-readonly="false" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="ubicacion_noticia" type="text">
 
-                                    </md-input-container>
-                                    <md-select placeholder="Assign to user" ng-model="user2.id_Grupo" md-on-open="cargarP()" style="min-width: 200px;">
-                                    <md-option ng-value="user" ng-repeat="user in users">{{per.Descripcion}}</md-option>
-                                </md-select>
+                                    <md-select name="empresa" md-on-open="cargarEmpresas()" placeholder="Empresa" ng-model="user2.id_Empresa" required>      
+                                        <md-option ng-repeat="tcon in empresa_t" ng-value="tcon.id">{{tcon.val}}</md-option>
+                                    </md-select>
+                                    <ng-messages for="formUsuarioN.tipos.$error" role="alert" ng-if="submitted">
+                                        <ng-message when="required">Debe seleccionar un tipo de Jugada</ng-message>                        
+                                    </ng-messages>
+
+                                </md-input-container>
                                 </div>
+                                <div class="form-group">
+                                    <md-input-container flex>
+
+                                    <md-select name="tipos" md-on-open="cargarGrupos()" placeholder="Grupo de Usuario" ng-model="user2.id_Grupo" required>      
+                                        <md-option ng-repeat="tcon in grupo_t" ng-value="tcon.id">{{tcon.val}}</md-option>
+                                    </md-select>
+                                    <ng-messages for="formUsuarioN.tipos.$error" role="alert" ng-if="submitted">
+                                        <ng-message when="required">Debe seleccionar un tipo de Jugada</ng-message>                        
+                                    </ng-messages>
+
+                                </md-input-container>
+                                </div>
+
                                 
                                  <div class="form-group">
                                     <md-input-container flex>
@@ -156,7 +172,7 @@
                             <h4 class="modal-title">Usuario registrado</h4>
                         </div>
                         <div class="modal-body">
-                            <form class="form-inline" name="formUsuarioM" role="form" novalidate>
+                            <form class="form-inline" name="formUsuarioM" role="form" validate>
                                 <div class="form-group">
                                     <md-input-container flex>
                                         <label>Usuario</label>
@@ -185,7 +201,7 @@
                                <div class="form-group">
                                     <md-input-container flex>
                                         <label>Correo</label>
-                                        <input ng-model="usuarioN.Correo">                            
+                                        <input ng-model="usuarioN.Correo" type="email">                            
                                     </md-input-container>
                                 </div>
                                  <div class="form-group">
@@ -194,12 +210,29 @@
                                         <input ng-model="usuarioN.Telefono">                            
                                     </md-input-container>
                                 </div>
-                                <div class="form-group">
+                              <div class="form-group">
                                     <md-input-container flex>
-                                        <label>Permiso</label>
-                                        <input ng-model="usuarioN.Descripcion" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="ubicacion_noticia" type="text">
 
-                                    </md-input-container>
+                                    <md-select name="empresa" md-on-open="cargarEmpresas()" placeholder="Empresa" ng-model="usuarioN.id_Empresa" required>      
+                                        <md-option ng-repeat="tcon in empresa_t" ng-value="tcon.id">{{tcon.val}}</md-option>
+                                    </md-select>
+                                    <ng-messages for="modificar.tipos.$error" role="alert" ng-if="submitted">
+                                        <ng-message when="required">Debe seleccionar un tipo de Jugada</ng-message>                        
+                                    </ng-messages>
+
+                                </md-input-container>
+                                </div>
+                                 <div class="form-group">
+                                <md-input-container flex>
+
+                                    <md-select name="tipos" md-on-open="cargarGrupos()" placeholder="Grupo de Usuario" ng-model="usuarioN.id_Grupo" required>      
+                                        <md-option ng-repeat="tcon in grupo_t" ng-value="tcon.id">{{tcon.val}}</md-option>
+                                    </md-select>
+                                    <ng-messages for="modificar.tipos.$error" role="alert" ng-if="submitted">
+                                        <ng-message when="required">Debe seleccionar un tipo de Jugada</ng-message>                        
+                                    </ng-messages>
+
+                                </md-input-container>
                                 </div>
                                 <div class="form-group">
                                     <md-switch ng-model="usuarioN.Estatus">

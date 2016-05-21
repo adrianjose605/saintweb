@@ -7,7 +7,7 @@ class Saa_libs extends CI_Controller {
         $this->load->model('Saa_lib_model');
     }
 
-    public function index() {
+    public function Ventas() {
          if (!$this->session->userdata('logueado')) {
 
          redirect('usuarios/acceso');
@@ -81,5 +81,41 @@ public function totalFacturas(){
     header('Content-Type: application/json');
     echo json_encode($this->Saa_lib_model->get_facturas_sucursal());
 }
+
+
+
+
+ public function tabla_principal_ventas($count = 10, $page = 1, $order = 'NroCtrol', $type = 'asc'){
+         if ($type != 'asc') {
+            $type = 'desc';
+        }
+        $ret = array();
+        $inicio = $page * $count - $count;
+        $array = $this->Saa_lib_model->generar_json_tabla_facturas($inicio, $count, $order, $type);
+
+        if ($type != 'asc') {
+            $type = 'dsc';
+        }
+        $cantidad_total = $array['cantidad'][0]['cantidad'] + 0;
+        $paginas_totales = ceil($cantidad_total / $count);
+
+        $result = $array['resultado'];
+
+        $meta = $array['meta'];
+        foreach ($result as $row) {
+            $ret['rows'][] = $row;
+        }
+
+        foreach ($meta as $row) {
+            $ret['header'][] = array_map('utf8_encode', array('name' => $row, 'key' => $row));
+        }
+
+        $ret['pagination'] = array('count' => $count, 'page' => $page, 'pages' => $paginas_totales, 'size' => $cantidad_total);
+
+        $ret['sort-by'] = $order;
+        $ret['sort-order'] = $type;
+
+        echo json_encode($ret);
+    } 
 
 }

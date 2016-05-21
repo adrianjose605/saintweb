@@ -86,11 +86,11 @@
                         <p><span class="glyphicon glyphicon-menu-down" style="margin-right: 10px;"></span> Control de empresas</p>
                     </accordion-heading> 
                     <md-list class="listdemoListControls">
-                        <md-list-item ng-click="navigateTo('System/Empresas')">
+                        <md-list-item ng-click="navigateTo('Sys/Empresas')">
                             <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Registro de Empresas</p>
                         </md-list-item>
                         
-                        <md-list-item ng-click="navigateTo('System/Empresas/Sucursales')">
+                        <md-list-item ng-click="navigateTo('Sys/Empresas/Sucursales')">
                             <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Sucursales</p>
                         </md-list-item>
                     </md-list>
