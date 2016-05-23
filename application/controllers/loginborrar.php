@@ -29,7 +29,7 @@ class Login extends CI_Controller {
 		$o=$this->input->get('opcion',true);
 		$u=$this->input->get('usuario',true);
 		$c=$this->input->get('clave',true);//
-		$r=$this->Usuarios_model->login($u,$c);
+		$r=$this->Usuarios_model->login4($u,$c);
 		
 		echo json_encode($r['0']);
 

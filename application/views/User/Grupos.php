@@ -1,5 +1,4 @@
-
-<div ng-controller="GUsuarios" layout="column" flex id="content" ng-cloak>
+<div style="position: relative;" ng-controller="GUsuarios" layout="column" flex id="content" ng-cloak>
     <div class="container" style="width:95%">
         <h1 >Grupos de usuario</h1>
 

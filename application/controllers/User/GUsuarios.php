@@ -130,6 +130,7 @@ public function modificar_usuarios(){
         $data['Facturacion']=$p->Facturacion;
         $data['Usuarios']=$p->Usuarios;
         $data['Empresas']=$p->Empresas;
+            $data['nombre']=$this->session->userdata('nombre');
         
         if($p->Permisos==1){  
          $this->load->view('templates/header', $data);

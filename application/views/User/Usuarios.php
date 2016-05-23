@@ -1,5 +1,4 @@
-
-<div ng-controller="GUsuarios" layout="column" flex id="content" >
+ <div style="position: absolute; width:80%" ng-controller="GUsuarios" layout="column" flex id="content" >
     <div class="container" style="width:95%">
         <h1 >Usuarios</h1>
 
@@ -261,8 +260,8 @@
 
 
 </div>
-
-
+   <!-- <div id="footer"></div>
+-->
 <script src="<?php echo base_url(); ?>public/js/Administrador/Usuarios.js"></script>
 
 

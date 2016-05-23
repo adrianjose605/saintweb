@@ -45,7 +45,7 @@ angular.module('saint')
 		console.log('Antes de la Carga Inicial');
 		
 
-		var urlApi = 'Admin/Saa_libs/tabla_principal_ventas/10/'+paramsObj.page+'/';
+		var urlApi = 'Admin/Saa_libs/tabla_principal_ventas/'+paramsObj.count+'/'+paramsObj.page+'/';
 	
 		if(paramsObj.sortBy){
 			urlApi+=paramsObj.sortBy+'/'+paramsObj.sortOrder;    

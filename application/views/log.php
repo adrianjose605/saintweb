@@ -2,7 +2,7 @@
 <div   style="height: 450px; width: 400px;">
     <md-toolbar layout="row"  >
         <div class="md-toolbar-tools">
-        <img src="public/img/Imagen14.png">
+        <img src="public/img/Imagen1.png"  width="70" height="90">
             <center><h1>Bienvenido a Saint Web</h1></center>
         </div>
     </md-toolbar>

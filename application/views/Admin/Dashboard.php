@@ -1,5 +1,5 @@
 
-<div ng-controller="Dashboard" layout="column" flex id="content" >
+<div style="position: relative;" ng-controller="Dashboard" layout="column" flex id="content" >
   <div class="container" style="width:95%">
     <div class="page-header">
       <h1>DashBoard <small><i class="fa fa-bar-chart" aria-hidden="true"></i></small></h1>

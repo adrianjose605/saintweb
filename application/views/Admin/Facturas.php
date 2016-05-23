@@ -1,10 +1,9 @@
+  <div style="position: relative;" ng-controller="Facturas" layout="column" flex id="content">
 
-<div ng-controller="Facturas" layout="column" flex id="content" >
-    <div class="container" style="width:95%">
+    <div class="container " style="width:95%" >
         <h1>Listado de Facturas</h1>
 
-
-             <div ng-show="contador != 0" tasty-table bind-resource-callback="getResourceV" bind-filters="paginador">
+             <div  ng-show="contador != 0" tasty-table bind-resource-callback="getResourceV" bind-filters="paginador">
                 <table class="table table-striped table-condensed" >
                     <thead tasty-thead bind-not-sort-by="notSortBy" class="centrado"></thead>
                     <tbody id="tabla">
@@ -28,8 +27,9 @@
                         </tr>
                     </tbody>
                 </table>
-                <div tasty-pagination></div>
+                <div tasty-pagination style="width:100%"></div>
             </div>
+
     </div>
 
 

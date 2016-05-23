@@ -3,22 +3,24 @@
         <md-button ng-click="toggleSidenav('left')" class="md-icon-button">
             <span class="glyphicon glyphicon-align-justify"></span>
         </md-button>
-         <img src="public/img/Imagen15.png">
+         <!--<img src="public/img/Imagen1.png" width="80" height="100">-->
         
         
          <img src="public/img/SAINT.PNG">
     </div >
    
-    <div class="md-toolbar-tools" style="padding-left: 70%">
-        <md-button href="<?php echo base_url(); ?>usuarios/cerrar" class="md-icon-button" aria-label="More" style="padding-top: 10%">        
-        <md-icon class="center" md-svg-src="public/icons/arrow.svg" style="padding-top: 9%"></md-icon>
-        </md-button>
+    <div class="md-toolbar-tools" style="padding-left: 60%">
         
+        <md-button href="<?php echo base_url(); ?>usuarios/cerrar" class="md-icon-button" aria-label="More" style="padding-top: 10%">        
+        <md-icon class="center" md-svg-src="public/icons/arrow.svg" style="padding-top: 6%"></md-icon>
+
+        </md-button>
+          <h4 style="padding-top: 6%"><?php echo $nombre; ?></h4>
     </div>
  
 </md-toolbar>
-<div layout="row" flex ng-cloak>
-    <md-sidenav layout="column" class="md-sidenav-left  md-whiteframe-z4" md-is-locked-open="$mdMedia('gt-lg')" md-disable-backdrop md-whiteframe="4" md-component-id="left">
+<div layout="row" flex ng-cloak >
+    <md-sidenav layout="column" class="md-sidenav-left  md-whiteframe-z4" md-is-locked-open="$mdMedia('gt-lg')" md-disable-backdrop md-whiteframe="4" md-component-id="left" style="height:88%">
         <md-content layout-padding="">
             <accordion close-others="oneAtATime">
 

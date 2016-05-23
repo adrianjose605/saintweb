@@ -22,6 +22,8 @@ class Saa_libs extends CI_Controller {
             $data['Facturacion']=$p->Facturacion;
             $data['Usuarios']=$p->Usuarios;
             $data['Empresas']=$p->Empresas;
+            $data['nombre']=$this->session->userdata('nombre');
+            
 
         $this->load->view('templates/header');
         $this->load->view('navbars/admin',$data);
@@ -50,6 +52,7 @@ class Saa_libs extends CI_Controller {
             $data['Facturacion']=$p->Facturacion;
             $data['Usuarios']=$p->Usuarios;
             $data['Empresas']=$p->Empresas;
+                $data['nombre']=$this->session->userdata('nombre');
 
             $this->load->view('templates/header');
             $this->load->view('navbars/admin',$data);
