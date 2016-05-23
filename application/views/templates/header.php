@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="public/angular-datepicker-master/dist/index.min.css">
         <link rel="stylesheet" href="public/bootstrap-timepicker/less/timepicker.less">
         <link rel="stylesheet" href="public/css/general.css">
+        <link rel="shortcut icon" type="image/png" href="public/img/favicon.png"/>
 
 
         <script src="public/jquery/jquery.min.js"></script>
