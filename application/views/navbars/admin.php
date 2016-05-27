@@ -92,7 +92,7 @@
                             <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Registro de Empresas</p>
                         </md-list-item>
                         
-                        <md-list-item ng-click="navigateTo('Sys/Empresas/Sucursales')">
+                        <md-list-item ng-click="navigateTo('Sys/Sucursales')">
                             <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Sucursales</p>
                         </md-list-item>
                     </md-list>
