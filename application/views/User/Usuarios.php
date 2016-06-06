@@ -69,11 +69,11 @@
                                 <div class="form-group">
                                     <md-input-container flex>
                                         <label>Usuario</label>
-                                        <input ng-model="user2.Usuario" type="text" name="Usuario">
-                                         <ng-messages for="formUsuarioN.Usuario.$error" role="alert" ng-if="submitted">
-                                            <ng-message when="required">Debe indicar un Usuario</ng-message>
-                                            <ng-message when="pattern">El titulo deben ser caracteres</ng-message>  
-                                        </ng-messages>
+                                        <input ng-model="user2.Usuario" type="text" name="Usuario" required  pattern="[a-zA-Z]+">
+                                          <div ng-messages="formUsuarioN.Usuario.$error">
+                                            <div ng-message="required">Ingrese su Usuario.</div>
+                                             <div ng-message="md-maxlength">Maximo 20 caracteres</div>
+                                          </div>
                                     </md-input-container>
                                 </div>
                                 <div class="form-group">

@@ -46,6 +46,16 @@ class Sucursal_model extends CI_Model {
         $this->db->insert('usuario_sistema', $usuario);
     }
 
+public function get_sucursal_sel($activos) {
+        $this->db->select('Descrip , CodSucu as id');
+        $this->db->where('CodEmp', $this->session->userdata('empresa'));
+        if ($activos)
+            $this->db->where('Estatus', $activos);
+ 
+
+        $query = $this->db->get('dbo.SASUCU');
+        return $query->result_array();
+    }
 
 
     public function get_Sucursal($id) {

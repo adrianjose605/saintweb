@@ -13,11 +13,19 @@
                     
                     <md-input-container style="margin-top: 6%; width: 95%;"class="" >
                         <label>Usuario</label>
-                        <input required md-no-asterisk name="usuario" ng-model="user.usuario" type="email">
+                        <input required md-no-asterisk name="usuario" ng-model="user.usuario" type="text" md-maxlength="20">
+                         <div ng-messages="formSesion.usuario.$error">
+                         <div ng-message="required">Ingrese su Usuario.</div>
+                          <div ng-message="md-maxlength">Maximo 20 caracteres</div>
+                        </div>
                     </md-input-container><br>
                     <md-input-container class=""  style="width:  95%;">
                         <label>Contraseña</label>
-                        <input required name="clave"  ng-model="user.clave" type="password">
+                        <input required name="clave"  ng-model="user.clave" type="password" md-maxlength="20">
+                         <div ng-messages="formSesion.clave.$error">
+                         <div ng-message="required">Ingrese su Contraseña.</div>
+                          <div ng-message="md-maxlength">Maximo 20 caracteres</div>
+                        </div>
                     </md-input-container><br>
 
                     <md-button style="margin-top: 10%; margin-left: 35%;" type="submit" class="md-raised md-primary" >Ingresar</md-button>

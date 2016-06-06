@@ -7,6 +7,9 @@ angular.module('saint')
 	function us($scope,$http,$mdToast){
 		$scope.paginador={valor:true};
 		$scope.busqueda={estatus:true,query:''};
+		
+
+
 		$scope.resetForm = function(){
 		$scope.user=angular.copy({});
 		$scope.emp=angular.copy({});

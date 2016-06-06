@@ -20,6 +20,15 @@
         <link rel="shortcut icon" type="image/png" href="public/img/favicon.png"/>
 
 
+      <!-- <script src="public/js/jquery-2.1.3.min.js"></script>
+        <script src="public/js/jquery-migrate-1.2.1.min.js"></script>
+        <script src="public/js/bootstrap.js"></script>
+        <script src="public/js/jquery.actual.min.js"></script>
+        <script src="public/js/jquery.scrollTo.min.js"></script>
+        <script src="public/js/script.js"></script>
+        <script src="public/js/smoothscroll.js"></script>
+        <script src="public/js/funciones.js"></script>-->
+
         <script src="public/jquery/jquery.min.js"></script>
         <script src="public/angular/angular.min.js"></script>
         <script src="public/moment/moment.js"></script>
@@ -42,6 +51,31 @@
         <script src="public/highcharts/drilldown.js"></script>
         <script src="public/highcharts/highcharts-3d.js"></script>
         <script src="public/highcharts/exporting.js"></script>   
+        <script src="public/pdf/pdf.js"></script>   
+        <script src="public/pdf/angular-pdf.min.js"></script>   
+
+       <!--                   //////////////////////////////////////////
+         <link href='public/css/font1.css' rel='stylesheet' type='text/css'>
+        <link href='public/css/font2.css' rel='stylesheet' >
+        <link href='public/css/font3.css' rel='stylesheet' type='text/css'>
+        <link  href="public/css/font4.css" rel="stylesheet"/>-->
+
+        <!-- css   
+        <link rel="stylesheet" href="public/css/style.css" media="screen"/>-->  
+        <meta name="viewport" content="initial-scale=1" />
+        
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+                <script src="public/js/html5shiv.js"></script>
+                <script src="public/js/respond.js"></script>
+        <![endif]-->
+
+        <!--[if IE 8]>
+        <script src="public/js/selectivizr.js"></script>
+    <![endif]-->
+
+
+
 
         
 

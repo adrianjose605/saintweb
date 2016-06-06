@@ -44,7 +44,7 @@
                       <?php if($LV==1): ?>
          
                     <md-list class="listdemoListControls">
-                        <md-list-item ng-click="navigateTo('Admin/Saa_libs/Libro_Ventas')">
+                        <md-list-item ng-click="navigateTo('Admin/Saa_libs/Lib_ventas')">
                             <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Libro de ventas <i class="fa fa-file-pdf-o" aria-hidden="true"></i></p>
                         </md-list-item>
                         

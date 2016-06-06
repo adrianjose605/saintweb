@@ -37,6 +37,37 @@ class Saa_libs extends CI_Controller {
        
     }
 
+    public function Lib_ventas() {
+         if (!$this->session->userdata('logueado')) {
+
+         redirect('usuarios/acceso');
+     } else{
+         $this->load->model('Usuarios_model');
+         $this->load->model('Pdfs_model');
+         $p=$this->Usuarios_model->permisos($this->session->userdata('permiso'));
+         if($p->LibroVentaConsolidado==1){  
+
+            $data['Permisos']=$p->Permisos;
+            $data['LVS']=$p->LibroVentaSucursal;
+            $data['LV']=$p->LibroVentaConsolidado;
+            $data['Facturacion']=$p->Facturacion;
+            $data['Usuarios']=$p->Usuarios;
+            $data['Empresas']=$p->Empresas;
+            $data['nombre']=$this->session->userdata('nombre');
+            $data['provincias'] = $this->Pdfs_model->getProvincias();
+
+        $this->load->view('templates/header');
+        $this->load->view('navbars/admin',$data);
+        $this->load->view('Admin/Lib_Ventas',$data);     
+        $this->load->view('templates/footer');
+        }else{
+            redirect($last);  
+        }
+
+    }
+       
+    }
+
     public function dashboard() {
       if (!$this->session->userdata('logueado')) {
 
