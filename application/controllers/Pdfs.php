@@ -22,7 +22,7 @@ class Pdfs extends CI_Controller {
     public function generar() {
         $aux=$this->input->get('id');
         $this->load->library('Pdf');
-        $pdf = new Pdf('L', 'mm', 'letter', true, 'UTF-8', false);
+        $pdf = new Pdf('P', 'mm', 'letter', true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetAuthor('Israel Parra');
         $pdf->SetTitle('Ejemplo de provincías con TCPDF');
@@ -35,16 +35,13 @@ class Pdfs extends CI_Controller {
  
 // datos por defecto de cabecera, se pueden modificar en el archivo tcpdf_config.php de libraries/config
         $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-        $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
- 
+        $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA)); 
 // se pueden modificar en el archivo tcpdf_config.php de libraries/config
-        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
- 
+        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED); 
 // se pueden modificar en el archivo tcpdf_config.php de libraries/config
         $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
         $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
- 
+        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER); 
 // se pueden modificar en el archivo tcpdf_config.php de libraries/config
         $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
  
@@ -68,34 +65,36 @@ class Pdfs extends CI_Controller {
 //fijar efecto de sombra en el texto
         $pdf->setTextShadow(array('enabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
         $get=$this->Saa_lib_model->get_all();
-// Establecemos el contenido para imprimir
-    /*    $provincia = $this->input->post('provincia');
-        
-        $provincias = $this->Pdfs_model->getProvinciasSeleccionadas($provincia[0]);
-        foreach($provincias as $fila)
-        {
-            $prov = $fila['p.provincia'];
-        }*/
-        //preparamos y maquetamos el contenido a crear
-        $html = ''.$aux."dghdfj".$get[0]['NumeroD'];
-        /*$html .= "<style type=text/css>";
-        $html .= "th{color: #fff; font-weight: bold; background-color: #222}";
-        $html .= "td{background-color: #AAC7E3; color: #fff}";
-        $html .= "</style>";
-        $html .= "<h2>Libro de ventas consolidado ".$prov."</h2><h4>Actualmente: ".count($provincias)." Sucursales</h4>".$aux;
-        $html .= "<table width='100%'>";
-        $html .= "<tr><th>Id localidad</th><th>Localidades</th></tr>";
-        
-        //provincias es la respuesta de la función getProvinciasSeleccionadas($provincia) del modelo
-        foreach ($provincias as $fila)
-        {
-            $id = $fila['l.id'];
-            $localidad = $fila['l.localidad'];
- 
-            $html .= "<tr><td class='id'>" . $id . "</td><td class='localidad'>" . $localidad . "</td></tr>";
-        }
-        $html .= "</table>";*/
- 
+        //var_dump($get);
+        $html="<table>";
+$html.="<thead>";
+    $html.="<tr>";
+            $html.="<td>";
+                $html.="Tipo Factura";
+            $html.="</td>"; 
+            $html.="<td>";
+                $html.="Monto";
+            $html.="</td>"; 
+        $html.="</tr>";
+$html.="</thead>";
+
+    $html.="<tbody>";
+
+       for($i=0 ; $i<count($get); $i++){
+    $html.="<tr>";
+            $html.="<td>";
+                $html .=$get[$i]['TipoFac'];
+            $html.="</td>"; 
+            $html.="<td>";
+                $html .=$get[$i]['Monto'];
+            $html.="</td>"; 
+    $html.="</tr>";
+  
+       }
+
+    $html.="</tbody>";
+$html.="</table>";
+  
 // Imprimimos el texto con writeHTMLCell()
         $pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
  
