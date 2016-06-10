@@ -4,29 +4,29 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
  
 class Pdfs extends CI_Controller {
  
-    function __construct() {
+function __construct() {
         parent::__construct();
    $this->load->model('Pdfs_model');
    $this->load->model('Saa_lib_model');
     
-    }
+}
     
-    public function index()
-    { 
+    public function index(){ 
         //$data['provincias'] llena el select con las provincias españolas
         $data['provincias'] = $this->Pdfs_model->getProvincias();
         //cargamos la vista y pasamos el array $data['provincias'] para su uso
         $this->load->view('Pdfs_view', $data);
     }
  
-    public function generar() {
-        $aux=$this->input->get('id');
+public function generar() {
+        
+   
         $this->load->library('Pdf');
         $pdf = new Pdf('P', 'mm', 'letter', true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
-        $pdf->SetAuthor('Israel Parra');
-        $pdf->SetTitle('Ejemplo de provincías con TCPDF');
-        $pdf->SetSubject('Tutorial TCPDF');
+        $pdf->SetAuthor('3D Vision');
+        $pdf->SetTitle('Libro de Ventas');
+       // $pdf->SetSubject('Tutorial TCPDF');
         $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
  
 // datos por defecto de cabecera, se pueden modificar en el archivo tcpdf_config_alt.php de libraries/config
@@ -46,8 +46,7 @@ class Pdfs extends CI_Controller {
         $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
  
 //relación utilizada para ajustar la conversión de los píxeles
-        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
- 
+        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO); 
  
 // ---------------------------------------------------------
 // establecer el modo de fuente por defecto
@@ -64,19 +63,27 @@ class Pdfs extends CI_Controller {
  
 //fijar efecto de sombra en el texto
         $pdf->setTextShadow(array('enabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
-        $get=$this->Saa_lib_model->get_all();
-        //var_dump($get);
-        $html="<table>";
-$html.="<thead>";
+             $aux=$this->input->get('id');
+        $get=$this->Saa_lib_model->get_all($aux[0]);
+        //var_dump($aux);
+       //echo "Prueba ".$aux[0];
+$html="<table>";
+    $html.="<thead>";
     $html.="<tr>";
             $html.="<td>";
                 $html.="Tipo Factura";
             $html.="</td>"; 
             $html.="<td>";
+                $html.="Codido Cliente";
+            $html.="</td>"; 
+            $html.="<td>";
+                $html.="Monto";
+            $html.="</td>"; 
+            $html.="<td>";
                 $html.="Monto";
             $html.="</td>"; 
         $html.="</tr>";
-$html.="</thead>";
+    $html.="</thead>";
 
     $html.="<tbody>";
 
@@ -84,21 +91,27 @@ $html.="</thead>";
     $html.="<tr>";
             $html.="<td>";
                 $html .=$get[$i]['TipoFac'];
+            $html.="</td>";
+            $html.="<td>";
+                $html .=$get[$i]['CodClie'];
+            $html.="</td>"; 
+            $html.="<td>";
+                $html .=$get[$i]['Monto'];
             $html.="</td>"; 
             $html.="<td>";
                 $html .=$get[$i]['Monto'];
             $html.="</td>"; 
     $html.="</tr>";
-  
+
        }
 
     $html.="</tbody>";
 $html.="</table>";
-  
+
 // Imprimimos el texto con writeHTMLCell()
         $pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
- 
-// ---------------------------------------------------------
+
+
 // Cerrar el documento PDF y preparamos la salida
 // Este método tiene varias opciones, consulte la documentación para más información.
         $nombre_archivo = utf8_decode("Lib_ventas_.pdf");

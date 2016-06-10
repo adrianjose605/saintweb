@@ -8,9 +8,12 @@
         	$this->load->database();
 		}
 
-		public function get_all() {
+		public function get_all($aux) {
+		   	//echo "Prueba ".$aux;
+		    $this->db->where('CodSucu ='.$aux);
 		    $this->db->limit(10);
 		    $query = $this->db->get('saa_lib');
+		    //var_dump($query->result_array());
 		    return $query->result_array();
 	    }
 
