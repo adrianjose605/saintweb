@@ -116,6 +116,10 @@ public function get_empresas_sel($activos) {
         if ($activos)
             $this->db->where('Estatus', $activos);
 
+        if ($this->session->userdata('empresa')!='1') 
+             $this->db->where('id', $this->session->userdata('empresa'));
+        
+
         $query = $this->db->get('sch_sistema.SIS_EMP');
         return $query->result_array();
     }

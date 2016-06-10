@@ -7,6 +7,7 @@ class Pdfs extends CI_Controller {
     function __construct() {
         parent::__construct();
    $this->load->model('Pdfs_model');
+   $this->load->model('Saa_lib_model');
     
     }
     
@@ -19,7 +20,7 @@ class Pdfs extends CI_Controller {
     }
  
     public function generar() {
-
+        $aux=$this->input->get('id');
         $this->load->library('Pdf');
         $pdf = new Pdf('L', 'mm', 'letter', true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
@@ -58,7 +59,7 @@ class Pdfs extends CI_Controller {
 // Establecer el tipo de letra
 //Si tienes que imprimir carácteres ASCII estándar, puede utilizar las fuentes básicas como
 // Helvetica para reducir el tamaño del archivo.
-        $pdf->SetFont('freemono', '', 14, '', true);
+        $pdf->SetFont('helvetica', '', 14, '', true);
  
 // Añadir una página
 // Este método tiene varias opciones, consulta la documentación para más información.
@@ -66,22 +67,22 @@ class Pdfs extends CI_Controller {
  
 //fijar efecto de sombra en el texto
         $pdf->setTextShadow(array('enabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
- 
+        $get=$this->Saa_lib_model->get_all();
 // Establecemos el contenido para imprimir
-        $provincia = $this->input->post('provincia');
-
+    /*    $provincia = $this->input->post('provincia');
+        
         $provincias = $this->Pdfs_model->getProvinciasSeleccionadas($provincia[0]);
         foreach($provincias as $fila)
         {
             $prov = $fila['p.provincia'];
-        }
+        }*/
         //preparamos y maquetamos el contenido a crear
-        $html = '';
-        $html .= "<style type=text/css>";
+        $html = ''.$aux."dghdfj".$get[0]['NumeroD'];
+        /*$html .= "<style type=text/css>";
         $html .= "th{color: #fff; font-weight: bold; background-color: #222}";
         $html .= "td{background-color: #AAC7E3; color: #fff}";
         $html .= "</style>";
-        $html .= "<h2>Libro de ventas consolidado ".$prov."</h2><h4>Actualmente: ".count($provincias)." Sucursales</h4>";
+        $html .= "<h2>Libro de ventas consolidado ".$prov."</h2><h4>Actualmente: ".count($provincias)." Sucursales</h4>".$aux;
         $html .= "<table width='100%'>";
         $html .= "<tr><th>Id localidad</th><th>Localidades</th></tr>";
         
@@ -93,7 +94,7 @@ class Pdfs extends CI_Controller {
  
             $html .= "<tr><td class='id'>" . $id . "</td><td class='localidad'>" . $localidad . "</td></tr>";
         }
-        $html .= "</table>";
+        $html .= "</table>";*/
  
 // Imprimimos el texto con writeHTMLCell()
         $pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
@@ -101,7 +102,7 @@ class Pdfs extends CI_Controller {
 // ---------------------------------------------------------
 // Cerrar el documento PDF y preparamos la salida
 // Este método tiene varias opciones, consulte la documentación para más información.
-        $nombre_archivo = utf8_decode("Lib_ventas_".$prov.".pdf");
+        $nombre_archivo = utf8_decode("Lib_ventas_.pdf");
         $pdf->Output($nombre_archivo, 'I');
     }
 }

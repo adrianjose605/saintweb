@@ -68,37 +68,40 @@
                         <p><span class="glyphicon glyphicon-menu-down" style="margin-right: 10px;"></span> Control de Acceso</p>
                     </accordion-heading> 
                     <md-list class="listdemoListControls">
-                       <?php if($Usuarios==1): ?>
+                    <?php if($Usuarios==1): ?>
                         <md-list-item ng-click="navigateTo('User/LUsuarios')">
                             <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Usuarios de acceso</p>
                         </md-list-item>
-                          <?php endif ?>
-                        <?php if($Permisos==1): ?>
+                    <?php endif ?>
+                    <?php if($Permisos==1): ?>
                         <md-list-item ng-click="navigateTo('User/GUsuarios')">
                             <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Grupos de usuarios</p>
                         </md-list-item>
-                         <?php endif ?>
+                    <?php endif ?>
                     </md-list>
 
                 </accordion-group>
-           <?php endif ?>
-            <?php if($Empresas==1): ?>
+            <?php endif ?>
+            <?php if($Empresas==1 || $Sucursales==1): ?>
                   <accordion-group>
                     <accordion-heading>
                         <p><span class="glyphicon glyphicon-menu-down" style="margin-right: 10px;"></span> Control de empresas</p>
                     </accordion-heading> 
                     <md-list class="listdemoListControls">
+                    <?php if($Empresas==1): ?>
                         <md-list-item ng-click="navigateTo('Sys/Empresas')">
                             <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Registro de Empresas</p>
                         </md-list-item>
-                        
+                    <?php endif ?>
+                    <?php if($Sucursales==1): ?> 
                         <md-list-item ng-click="navigateTo('Sys/Sucursales')">
                             <p><span class="glyphicon glyphicon-menu-right" style="margin-right: 10px;"></span> Sucursales</p>
                         </md-list-item>
+                    <?php endif ?>
                     </md-list>
 
                 </accordion-group>
-                 <?php endif ?> 
+            <?php endif ?> 
             </accordion>
             <h4>Rango de Fecha a Consultar</h4>
             <md-datepicker ng-model="desde" md-placeholder="Desde"></md-datepicker>

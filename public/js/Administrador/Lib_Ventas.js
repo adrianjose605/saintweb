@@ -11,6 +11,18 @@ angular.module('saint')
   $scope.loading = 'loading';
   $scope.lib={};
 
+
+
+
+
+$scope.Generar= function(){
+    window.open(base_url+'Pdfs/generar?id='+$scope.lib['CodSucu']);
+  }
+
+
+
+
+
   $scope.getNavStyle = function(scroll) {
     if(scroll > 100) return 'pdf-controls fixed';
     else return 'pdf-controls';

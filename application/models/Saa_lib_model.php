@@ -9,6 +9,7 @@
 		}
 
 		public function get_all() {
+		    $this->db->limit(10);
 		    $query = $this->db->get('saa_lib');
 		    return $query->result_array();
 	    }

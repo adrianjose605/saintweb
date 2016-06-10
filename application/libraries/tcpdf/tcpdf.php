@@ -5,7 +5,7 @@
 // Begin       : 2002-08-03
 // Last Update : 2015-06-18
 // Author      : Nicola Asuni - Tecnick.com LTD - www.tecnick.com - info@tecnick.com
-// License     : GNU-LGPL v3 (http://www.gnu.org/copyleft/lesser.html)
+// Licent     : GNU-LGPL v3 (http://www.gnu.org/copyleft/lesser.html)
 // -------------------------------------------------------------------
 // Copyright (C) 2002-2015 Nicola Asuni - Tecnick.com LTD
 //
@@ -106,8 +106,6 @@
  * @author Nicola Asuni
  * @version 6.2.8
  */
-
-// TCPDF configuration
 require_once(dirname(__FILE__).'/tcpdf_autoconfig.php');
 // TCPDF static font methods and data
 require_once(dirname(__FILE__).'/include/tcpdf_font_data.php');

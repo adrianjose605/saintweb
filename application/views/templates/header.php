@@ -51,8 +51,8 @@
         <script src="public/highcharts/drilldown.js"></script>
         <script src="public/highcharts/highcharts-3d.js"></script>
         <script src="public/highcharts/exporting.js"></script>   
-        <script src="public/pdf/pdf.js"></script>   
-        <script src="public/pdf/angular-pdf.min.js"></script>   
+        <!--<script src="public/pdf/pdf.js"></script>   
+        <script src="public/pdf/angular-pdf.min.js"></script>  --> 
 
        <!--                   //////////////////////////////////////////
          <link href='public/css/font1.css' rel='stylesheet' type='text/css'>

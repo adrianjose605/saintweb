@@ -97,6 +97,7 @@ class LUsuarios extends CI_Controller {
             $data['Facturacion']=$p->Facturacion;
             $data['Usuarios']=$p->Usuarios;
               $data['Empresas']=$p->Empresas;
+            $data['Sucursales']=$p->Sucursales;
             $data['nombre']=$this->session->userdata('nombre');
 
         $this->load->view('templates/header');

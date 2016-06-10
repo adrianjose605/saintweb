@@ -59,7 +59,7 @@ if (substr($_SERVER['DOCUMENT_ROOT'], -1) != '/') {
 // Load main configuration file only if the K_TCPDF_EXTERNAL_CONFIG constant is set to false.
 if (!defined('K_TCPDF_EXTERNAL_CONFIG') OR !K_TCPDF_EXTERNAL_CONFIG) {
 	// define a list of default config files in order of priority
-	$tcpdf_config_files = array(dirname(__FILE__).'/config/tcpdf_config.php', '/etc/php-tcpdf/tcpdf_config.php', '/etc/tcpdf/tcpdf_config.php', '/etc/tcpdf_config.php');
+	$tcpdf_config_files = array(dirname(__FILE__).'/config/tcpdf_config_estimacion.php', '/etc/php-tcpdf/tcpdf_config_estimacion.php', '/etc/tcpdf/tcpdf_config_estimacion.php', '/etc/tcpdf_config_estimacion_estimacion.php');
 	foreach ($tcpdf_config_files as $tcpdf_config) {
 		if (@file_exists($tcpdf_config) AND is_readable($tcpdf_config)) {
 			require_once($tcpdf_config);
@@ -102,15 +102,15 @@ if (!defined('K_PATH_IMAGES')) {
 
 if (!defined('PDF_HEADER_LOGO')) {
 	$tcpdf_header_logo = '';
-	if (@file_exists(K_PATH_IMAGES.'SAINT.PNG')) {
-		$tcpdf_header_logo = 'SAINT.PNG';
+	if (@file_exists(K_PATH_IMAGES.'tcpdf_logo.jpg')) {
+		$tcpdf_header_logo = 'tcpdf_logo.jpg';
 	}
 	define ('PDF_HEADER_LOGO', $tcpdf_header_logo);
 }
 
 if (!defined('PDF_HEADER_LOGO_WIDTH')) {
 	if (!empty($tcpdf_header_logo)) {
-		define ('PDF_HEADER_LOGO_WIDTH', 60);
+		define ('PDF_HEADER_LOGO_WIDTH', 30);
 	} else {
 		define ('PDF_HEADER_LOGO_WIDTH', 0);
 	}
@@ -129,11 +129,11 @@ if (!defined('K_BLANK_IMAGE')) {
 }
 
 if (!defined('PDF_PAGE_FORMAT')) {
-	define ('PDF_PAGE_FORMAT', 'Letter');
+	define ('PDF_PAGE_FORMAT', 'A4');
 }
 
 if (!defined('PDF_PAGE_ORIENTATION')) {
-	define ('PDF_PAGE_ORIENTATION', 'L');
+	define ('PDF_PAGE_ORIENTATION', 'P');
 }
 
 if (!defined('PDF_CREATOR')) {
@@ -145,11 +145,11 @@ if (!defined('PDF_AUTHOR')) {
 }
 
 if (!defined('PDF_HEADER_TITLE')) {
-	define ('PDF_HEADER_TITLE', 'Libro de Ventas');
+	define ('PDF_HEADER_TITLE', 'TCPDF Example');
 }
 
 if (!defined('PDF_HEADER_STRING')) {
-	define ('PDF_HEADER_STRING', "Generado por Saint Web");
+	define ('PDF_HEADER_STRING', "by Nicola Asuni - Tecnick.com\nwww.tcpdf.org");
 }
 
 if (!defined('PDF_UNIT')) {
@@ -165,7 +165,7 @@ if (!defined('PDF_MARGIN_FOOTER')) {
 }
 
 if (!defined('PDF_MARGIN_TOP')) {
-	define ('PDF_MARGIN_TOP', 80);
+	define ('PDF_MARGIN_TOP', 27);
 }
 
 if (!defined('PDF_MARGIN_BOTTOM')) {

@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="form-group">    
-                    <md-button id="nuevo" class="md-raised md-primary" data-toggle="modal"  data-target="#nuevo_usuario">Nuevo </md-button>
+                    <md-button id="nuevo" class="md-raised md-primary" data-toggle="modal"  data-target="#nueva_sucursal">Nuevo </md-button>
                 </div>
             
                 
@@ -56,7 +56,7 @@
             </div>
 
 <!--NUEVO MODAL-->
-            <div id="nuevo_usuario" class="modal fade" role="dialog">
+            <div id="nueva_sucursal" class="modal fade" role="dialog">
                 <div class="modal-dialog">                
                     <div class="modal-content">
                         <div class="modal-header">
@@ -65,36 +65,50 @@
                         </div>
                         <div class="modal-body">
                             <form class="form-inline" name="formSucursalN" role="form" validate>
+                              <div class="form-group">
+                                    <md-input-container flex>
+
+                                    <md-select name="empresa" md-on-open="cargarEmpresas()" placeholder="Empresa" ng-model="suc.CodEmp" required>      
+                                        <md-option ng-repeat="tcon in empresa_t" ng-value="tcon.id">{{tcon.val}}</md-option>
+                                    </md-select>
+                                    <ng-messages for="modificar.tipos.$error" role="alert" ng-if="submitted">
+                                        <ng-message when="required">Debe seleccionar un tipo de Jugada</ng-message>                        
+                                    </ng-messages>
+
+                                </md-input-container>
+                                </div>
                                 <div class="form-group">
                                     <md-input-container flex>
                                         <label>Nombre</label>
-                                        <input maxlength="50" ng-model="suc.Descrip" type="text" name="nombre_empresa">
-                                        <ng-messages for="formSucursalN.Descrip.$error" role="alert" ng-if="submitted">
-                                            <ng-message when="required">Debe indicar un Nombre</ng-message>
-                                            <ng-message when="pattern">El titulo deben ser caracteres</ng-message>  
-                                        </ng-messages>
+                                        <input maxlength="50" ng-model="suc.Descrip" type="text" name="Nnombre">
+                                    <div ng-messages="formSucursalN.Nnombre.$error" ng-show="formSucursalN.Nnombre.$dirty">
+                                        <div ng-message="required">Campo requerido</div>
+                                        <div ng-message="md-maxlength">cantidad de digitos excedida</div>
+                                        <div ng-message="pattern">Caractér Invalido</div>
+                                    </div>
 
                                     </md-input-container>
                                 </div>
-                                <div class="form-group">
-                                    <md-input-container flex>
-                                        <label>Descripcion</label>
-                                        <input ng-model="suc.Descrip"  pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="correo" type="text">
-
-                                    </md-input-container>
-                                </div>
-                                <div class="form-group">
+                               <div class="form-group">
                                     <md-input-container flex>
                                         <label>Direcion</label>
-                                        <input ng-model="suc.Direccion"  ng-readonly="false" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="text" type="phone">
-
+                                        <input ng-model="suc.Direccion"  ng-readonly="false" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="Ndireccion" type="text" required="true">
+                                    <div ng-messages="formSucursalN.Ndireccion.$error" ng-show="formSucursalN.Ndireccion.$dirty">
+                                        <div ng-message="required">Campo requerido</div>
+                                        <div ng-message="md-maxlength">cantidad de digitos excedida</div>
+                                        <div ng-message="pattern">Caractér Invalido</div>
+                                    </div>
                                     </md-input-container>
                                 </div>
                                 <div class="form-group">
                                     <md-input-container flex>
                                         <label>Telefono</label>
-                                        <input ng-model="suc.Telefono"  ng-readonly="false" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="text" type="phone">
-
+                                        <input ng-model="suc.Telefono"  ng-readonly="false" pattern="[0-9]{1,20}" name="Ntelefono" type="phone" maxlength="20" required="true" > 
+                                        <div ng-messages="formSucursalN.Ntelefono.$error" ng-show="formSucursalN.Ntelefono.$dirty">
+                                        <div ng-message="required">Campo requerido</div>
+                                        <div ng-message="md-maxlength">cantidad de digitos excedida</div>
+                                        <div ng-message="pattern">Caractér Invalido</div>
+                                    </div>
                                     </md-input-container>
                                 </div>
                                                                
@@ -134,25 +148,34 @@
                                 <div class="form-group">
                                     <md-input-container flex>
                                         <label>Nombre</label>
-                                        <input maxlength="50" ng-model="suc2.Descrip" type="text" name="nombre_empresa">
-                                        <ng-messages for="formSucursalM.Descrip.$error" role="alert" ng-if="submitted">
-                                            <ng-message when="required">Debe indicar un Nombre</ng-message>
-                                            <ng-message when="pattern">El titulo deben ser caracteres</ng-message>  
-                                        </ng-messages>
+                                        <input maxlength="50" ng-model="suc2.Descrip" type="text" name="Mnombre" required="true">             
+                                    <div ng-messages="formSucursalM.Mnombre.$error">
+                                        <div ng-message="required">Campo requerido</div>
+                                        <div ng-message="md-maxlength">That's too long!</div>
+                                    </div>
 
                                     </md-input-container>
                                 </div>
                                 <div class="form-group">
                                     <md-input-container flex>
-                                        <label>Direcion</label>
-                                        <input ng-model="suc2.Direccion"  ng-readonly="false" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="text" type="phone">
+                                    <label>Direcion</label>
+                                    <input ng-model="suc2.Direccion"  ng-readonly="false" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="Mdireccion" type="text" required="true">
+                                    <div ng-messages="formSucursalM.Mdireccion.$error">
+                                        <div ng-message="required">Campo requerido</div>
+                                        <div ng-message="pattern">Caractér Invalido</div>
+                                    </div>
 
                                     </md-input-container>
                                 </div>
                                 <div class="form-group">
                                     <md-input-container flex>
                                         <label>Telefono</label>
-                                        <input ng-model="suc2.Telefono"  ng-readonly="false" pattern="^[a-zA-Z0-9áéíóúñ_]+( [a-zA-Z0-9áéíóúñ _]+)*$" name="text" type="phone">
+                                        <input maxlength="20" ng-model="suc2.Telefono"  ng-readonly="false" pattern="[0-9]{1,20}" name="Mtelefono" type="phone">
+                                    <div ng-messages="formSucursalM.Mtelefono.$error" ng-show="formSucursalM.Mtelefono.$dirty">
+                                        <div ng-message="required">Campo requerido</div>
+                                        <div ng-message="md-maxlength">cantidad de digitos excedida</div>
+                                        <div ng-message="pattern">Caractér Invalido</div>
+                                    </div>
 
                                     </md-input-container>
                                 </div>

@@ -136,7 +136,7 @@ $scope.getResourceG = function (params, paramsObj) {
 // obtener info de un usuario para los swich
 $scope.getUsuarios= function(id){
 	$scope.cargarGrupos();		
-$scope.cargarEmpresas();
+	$scope.cargarEmpresas();
 	  console.log('User/LUsuarios/verU/'+id);
 		$http.get('User/LUsuarios/verU/'+id).
 			success(function(data, status, headers, config) {				

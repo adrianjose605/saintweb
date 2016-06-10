@@ -22,6 +22,7 @@ class Saa_libs extends CI_Controller {
             $data['Facturacion']=$p->Facturacion;
             $data['Usuarios']=$p->Usuarios;
             $data['Empresas']=$p->Empresas;
+            $data['Sucursales']=$p->Sucursales;
             $data['nombre']=$this->session->userdata('nombre');
             
 
@@ -53,6 +54,7 @@ class Saa_libs extends CI_Controller {
             $data['Facturacion']=$p->Facturacion;
             $data['Usuarios']=$p->Usuarios;
             $data['Empresas']=$p->Empresas;
+            $data['Sucursales']=$p->Sucursales;
             $data['nombre']=$this->session->userdata('nombre');
             $data['provincias'] = $this->Pdfs_model->getProvincias();
 
@@ -60,6 +62,28 @@ class Saa_libs extends CI_Controller {
         $this->load->view('navbars/admin',$data);
         $this->load->view('Admin/Lib_Ventas',$data);     
         $this->load->view('templates/footer');
+        }else{
+            redirect($last);  
+        }
+
+    }
+       
+    }    public function PDF() {
+         if (!$this->session->userdata('logueado')) {
+
+         redirect('usuarios/acceso');
+     } else{
+         $this->load->model('Usuarios_model');
+         $this->load->model('Pdfs_model');
+         $p=$this->Usuarios_model->permisos($this->session->userdata('permiso'));
+         if($p->LibroVentaConsolidado==1){  
+            
+            $data = $this->getInputFromAngular();  
+           
+        //$this->load->view('templates/header');
+        //$this->load->view('navbars/admin',$data);
+        $this->load->view('Admin/pdf_cosolidado',$data);     
+        //$this->load->view('templates/footer');
         }else{
             redirect($last);  
         }
@@ -83,6 +107,7 @@ class Saa_libs extends CI_Controller {
             $data['Facturacion']=$p->Facturacion;
             $data['Usuarios']=$p->Usuarios;
             $data['Empresas']=$p->Empresas;
+            $data['Sucursales']=$p->Sucursales;
                 $data['nombre']=$this->session->userdata('nombre');
 
             $this->load->view('templates/header');
