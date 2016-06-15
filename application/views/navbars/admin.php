@@ -3,9 +3,7 @@
         <md-button ng-click="toggleSidenav('left')" class="md-icon-button">
             <span class="glyphicon glyphicon-align-justify"></span>
         </md-button>
-         <!--<img src="public/img/Imagen1.png" width="80" height="100">-->
-        
-        
+         <img src="public/img/MiniImagen1.png" width="90" height="70" >       
          <img src="public/img/SAINT.PNG">
     </div >
    

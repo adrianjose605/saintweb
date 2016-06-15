@@ -11,7 +11,7 @@
          <md-select md-on-open="cargarSucursal()" name="provincia" id="provincia"  placeholder="Sucursal" ng-model="lib.CodSucu" required>      
                 <md-option ng-repeat="tcon in sucursal_t" ng-value="tcon.id">{{tcon.Descrip}}</md-option>
             </md-select>
-     <div class="errors" ng-messages="libro.lib.$error" ng-if="libro.$dirty">
+     <div class="errors" ng-messages="libro.lib.$error" ng-if="libro.lib.$dirty">
         <div ng-message="required">Required</div>
     </div>
    </td>
