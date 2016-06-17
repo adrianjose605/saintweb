@@ -4,6 +4,29 @@
     <div class="page-header">
       <h1>DashBoard <small><i class="fa fa-bar-chart" aria-hidden="true"></i></small></h1>
     </div>
+    <table align="center">
+   <tr>
+        <td>
+         <md-select md-on-open="cargarSucursal()" name="provincia" id="provincia"  placeholder="Sucursal" ng-model="lib.CodSucu" required>      
+                <md-option ng-repeat="tcon in sucursal_t" ng-value="tcon.id">{{tcon.Descrip}}</md-option>
+            </md-select>
+            <md-button id="generar" class="md-raised md-primary" type="submit" data-target="libro" ng-click="Actualizar()">Generar 
+                </md-button>
+     <div class="errors" ng-messages="libro.lib.$error" ng-if="libro.lib.$dirty">
+        <div ng-message="required">Required</div>
+    </div>
+     <div class="form-group">    
+                
+     </div>
+   </td>
+    </tr>
+    <tr>
+    <td align="center" colspan="7">
+    <hr />
+   
+       </td>
+    </tr>
+</table>
     <div class="row">
       <div class="col-md-3">
         <div class="panel panel-success">

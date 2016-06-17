@@ -5,34 +5,43 @@ angular.module('saint')
 
 
 	function us($scope,$http,$mdToast){
+         $scope.graf_ventas=angular.copy({});
+        
+        $scope.cargarSucursal=function(){
+        return $http.get('Sys/Sucursales/ver_sel').
+            success(function(data, status, headers, config) {       
+            $scope.sucursal_t=data;
+      
+            console.log($scope.sucursal_t);
+            }).
+            error(function(data, status, headers, config) {
+            console.log(status);
+                hacerToast('error','Ocurrio un Error al Cargar los Tipos de Jugadas');
+            });
+        }
+             
 		$http.get("Admin/Saa_libs/totalCredito/")
 			.success(function(data){
 				$scope.credito = data;
-			})
+			});
 
 		$http.get("Admin/Saa_libs/totalFacturado/")
 			.success(function(data){
 				$scope.facturado = data;
-			})
+			});
 		$http.get("Admin/Saa_libs/totalFacturas/")
 			.success(function(data){
 				$scope.facturas = data;
-			})
-	}
-
-
-
-	Highcharts.chart('container', {
-
-        xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
-                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        },
-
-        series: [{
-            data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-        }]
-    });
+			});
+        $http.get("Admin/Saa_libs/serie_ventas/").then(function(response) {
+            $scope.graf_ventas = response.data;
+             var data1=[7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6];        
+            Highcharts.chart('container',
+            {xAxis: {categories: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun','Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
+            },series: [{data:  $scope.graf_ventas}] });
+            // console.log( $scope.graf_ventas);
+            });
+            
 
     Highcharts.chart('container2', {
         chart: {
@@ -418,3 +427,5 @@ angular.module('saint')
             data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
         }]
     });		 
+
+    }
