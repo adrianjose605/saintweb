@@ -10,7 +10,7 @@
     <div class="md-toolbar-tools" style="padding-left: 60%">
         
         <md-button href="<?php echo base_url(); ?>usuarios/cerrar" class="md-icon-button" aria-label="More" style="padding-top: 10%">        
-        <md-icon class="center" md-svg-src="public/icons/arrow.svg" style="padding-top: 6%"></md-icon>
+        <md-icon class="center" md-svg-src="public/icons/logout.svg" style="padding-top: 6%"></md-icon>
 
         </md-button>
           <h4 style="padding-top: 6%"><?php echo $nombre; ?></h4>
@@ -111,3 +111,4 @@
 
       
     </md-sidenav>
+ <div class="marca" ></div>

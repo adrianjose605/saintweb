@@ -159,6 +159,15 @@ background-color: #FFFFFF;
     height:100%;     
     position: absolute;
 }
+.quitar_marca{
+  background-image:"";
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment:fixed;
+    width:100%;
+    height:100%;     
+    position: absolute;
+}
 
 .fot{
   position:absolute; 

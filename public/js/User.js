@@ -17,7 +17,7 @@ $scope.showAdvanced = function(ev) {
       templateUrl: 'Usuarios/log',
       parent: angular.element(document.body),
       targetEvent: ev,
-      clickOutsideToClose:false,
+      clickOutsideToClose:true,
       fullscreen: useFullScreen
     })
     .then(function(answer) {
