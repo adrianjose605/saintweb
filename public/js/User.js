@@ -18,8 +18,10 @@ $scope.showAdvanced = function(ev) {
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose:true,
-      fullscreen: useFullScreen
+      fullscreen: useFullScreen,
+
     })
+
     .then(function(answer) {
       $scope.status = 'You said the information was "' + answer + '".';
     }, function() {

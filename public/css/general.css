@@ -1,4 +1,8 @@
 html { background: transparent }
+#dialog_2{
+  width: 35%;
+  height: 400px;
+}
 
 .porcentaje100{
   width: 100%;

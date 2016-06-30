@@ -90,13 +90,7 @@ public function cerrar(){
    
 
     public function acceso() {
-       /* if($this->session->userdata('estatus')=='1'){
-          $usuario_data = array(   
-               'mensaje' => '',            
-               'logueado' => false);
-          $this->session->set_userdata($usuario_data);
-        }*/
-        
+          
         
         $this->load->view('templates/header');     
         $this->load->view('inicio');
